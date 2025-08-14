@@ -26,7 +26,7 @@ export function EmergencyBanner() {
               </div>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
-                <span className="text-sm">Lagos • Abuja • PH</span>
+                <span className="text-sm">Lagos • Abuja • Port Harcourt • Anambra</span>
               </div>
             </div>
           </div>

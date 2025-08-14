@@ -36,7 +36,7 @@ export function SearchSection() {
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
           <Input
             type="text"
-            placeholder="Search for pipes, fittings, tools, or services..."
+            placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-12 pr-32 py-4 text-lg border-2 focus:border-green-500 rounded-full"

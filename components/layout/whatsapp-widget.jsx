@@ -10,7 +10,7 @@ export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [message, setMessage] = useState("")
 
-  const whatsappNumber = "+2348012345678"
+  const whatsappNumber = "+2349150462104"
 
   const quickMessages = [
     "I need emergency plumbing service",
@@ -19,7 +19,8 @@ export function WhatsAppWidget() {
     "I want to book an installation",
   ]
 
-  const sendWhatsAppMessage = () => {
+  // ✅ Fixed version: accepts the message as a parameter
+  const sendWhatsAppMessage = (text) => {
     const encodedMessage = encodeURIComponent(text)
     const whatsappUrl = `https://wa.me/${whatsappNumber.replace("+", "")}?text=${encodedMessage}`
     window.open(whatsappUrl, "_blank")
@@ -29,7 +30,7 @@ export function WhatsAppWidget() {
     <>
       {/* WhatsApp Chat Widget */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-4 w-80 z-50 shadow-2xl">
+        <Card className="fixed bottom-24 right-4 w-80 max-w-full z-50 shadow-2xl">
           <CardHeader className="bg-green-600 text-white rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -54,9 +55,11 @@ export function WhatsAppWidget() {
 
           <CardContent className="p-4">
             <div className="space-y-3 mb-4">
-              <div className="bg-green-100 p-3 rounded-lg text-sm">
+              <div className="bg-green-100 p-3 rounded-lg text-sm text-gray-600">
                 <p className="font-medium">Hello! 👋</p>
-                <p>How can we help you today? We're available 24/7 for emergency services!</p>
+                <p>
+                  How can we help you today? We're available 24/7 for emergency services!
+                </p>
               </div>
 
               <div className="space-y-2">
@@ -98,7 +101,7 @@ export function WhatsAppWidget() {
         </Card>
       )}
 
-      {/* WhatsApp Float Button */}
+      {/* Floating WhatsApp Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-4 right-4 w-14 h-14 rounded-full whatsapp-green hover:bg-green-700 shadow-lg z-50"
