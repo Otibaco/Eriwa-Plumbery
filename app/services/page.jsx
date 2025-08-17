@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -157,42 +158,50 @@ export default function ServicesPage() {
 
           <TabsContent value={selectedCategory} className="mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredServices.map((service) => (
-                <Card key={service.id} className="group hover:shadow-lg transition-all duration-300">
-                  {service.popular && (
-                    <Badge className="absolute -top-2 left-4 bg-yellow-500 text-black z-10">Most Popular</Badge>
-                  )}
+              {filteredServices.map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="group hover:shadow-lg transition-all duration-300">
+                    {service.popular && (
+                      <Badge className="absolute -top-2 left-4 bg-yellow-500 text-black z-10">Most Popular</Badge>
+                    )}
 
-                  <CardHeader className="text-center pb-4">
-                    <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <service.icon className="h-8 w-8 text-green-600 dark:text-green-300" />
-                    </div>
-                    <CardTitle className="text-lg">{service.name}</CardTitle>
-                    <div className="text-2xl font-bold text-green-600 naira-symbol">{service.price}</div>
-                    <div className="text-sm text-muted-foreground">Response: {service.responseTime}</div>
-                  </CardHeader>
+                    <CardHeader className="text-center pb-4">
+                      <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <service.icon className="h-8 w-8 text-green-600 dark:text-green-300" />
+                      </div>
+                      <CardTitle className="text-lg">{service.name}</CardTitle>
+                      <div className="text-2xl font-bold text-green-600 naira-symbol">{service.price}</div>
+                      <div className="text-sm text-muted-foreground">Response: {service.responseTime}</div>
+                    </CardHeader>
 
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground">{service.description}</p>
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground">{service.description}</p>
 
-                    <div className="space-y-2">
-                      {service.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
+                      <div className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm">
+                            <CheckCircle className="h-4 w-4 text-green-600" />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
 
-                    <Button
-                      className="w-full group-hover:bg-green-700 transition-colors"
-                      onClick={() => setSelectedService(service.id)}
-                    >
-                      Book Service
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
+                      <Button
+                        className="w-full group-hover:bg-green-700 transition-colors"
+                        onClick={() => setSelectedService(service.id)}
+                      >
+                        Book Service
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </TabsContent>
@@ -202,25 +211,33 @@ export default function ServicesPage() {
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8">Service Areas</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {serviceAreas.map((area) => (
-              <Card key={area.city} className="text-center">
-                <CardHeader>
-                  <CardTitle className="text-xl text-green-600">{area.city}</CardTitle>
-                  <p className="text-muted-foreground">{area.phone}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-2">
-                    {area.areas.map((location) => (
-                      <div
-                        key={location}
-                        className="text-sm bg-muted rounded-lg p-2 hover:bg-green-100 dark:hover:bg-green-900 transition-colors"
-                      >
-                        {location}
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+            {serviceAreas.map((area, index) => (
+              <motion.div
+                key={area.city}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                viewport={{ once: true }}
+              >
+                <Card className="text-center">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-green-600">{area.city}</CardTitle>
+                    <p className="text-muted-foreground">{area.phone}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-2 gap-2">
+                      {area.areas.map((location) => (
+                        <div
+                          key={location}
+                          className="text-sm bg-muted rounded-lg p-2 hover:bg-green-100 dark:hover:bg-green-900 transition-colors"
+                        >
+                          {location}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -229,38 +246,32 @@ export default function ServicesPage() {
         <section className="bg-muted/50 rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-center mb-8">Why Choose Eriwa Plumbery?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-green-600 dark:text-green-300" />
-              </div>
-              <h3 className="font-semibold mb-2">Licensed & Insured</h3>
-              <p className="text-sm text-muted-foreground">
-                Fully licensed plumbers with comprehensive insurance coverage
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-8 w-8 text-green-600 dark:text-green-300" />
-              </div>
-              <h3 className="font-semibold mb-2">24/7 Emergency</h3>
-              <p className="text-sm text-muted-foreground">
-                Round-the-clock emergency service across all service areas
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="h-8 w-8 text-green-600 dark:text-green-300" />
-              </div>
-              <h3 className="font-semibold mb-2">5-Star Rated</h3>
-              <p className="text-sm text-muted-foreground">Consistently rated 4.9/5 stars by thousands of customers</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Truck className="h-8 w-8 text-green-600 dark:text-green-300" />
-              </div>
-              <h3 className="font-semibold mb-2">Free Estimates</h3>
-              <p className="text-sm text-muted-foreground">No-obligation quotes and transparent pricing</p>
-            </div>
+            {[Shield, Clock, Star, Truck].map((Icon, index) => {
+              const titles = ["Licensed & Insured", "24/7 Emergency", "5-Star Rated", "Free Estimates"]
+              const descriptions = [
+                "Fully licensed plumbers with comprehensive insurance coverage",
+                "Round-the-clock emergency service across all service areas",
+                "Consistently rated 4.9/5 stars by thousands of customers",
+                "No-obligation quotes and transparent pricing",
+              ]
+
+              return (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon className="h-8 w-8 text-green-600 dark:text-green-300" />
+                  </div>
+                  <h3 className="font-semibold mb-2">{titles[index]}</h3>
+                  <p className="text-sm text-muted-foreground">{descriptions[index]}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </section>
       </main>
