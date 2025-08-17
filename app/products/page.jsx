@@ -1,19 +1,35 @@
 "use client"
-
-import { useState } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Eye, ArrowUpDown } from "lucide-react"
+import {
+  Search,
+  Filter,
+  Grid,
+  List,
+  Star,
+  ShoppingCart,
+  Heart,
+  Eye,
+  ArrowUpDown,
+} from "lucide-react"
 import Image from "next/image"
 import { WhatsAppWidget } from "@/components/layout/whatsapp-widget"
+import { motion } from "framer-motion"
 
-const products = [
+  const products = [
   {
     id: 1,
     name: "Professional Pipe Wrench Set - 3 Pieces",
@@ -31,7 +47,7 @@ const products = [
   },
   {
     id: 2,
-    name: "Premium Bathroom Faucet - Chrome Finish",
+    name: "iron",
     price: 45000,
     originalPrice: 60000,
     rating: 4.9,
@@ -44,8 +60,309 @@ const products = [
     loyaltyPoints: 450,
     featured: true,
   },
-  // Add more products...
+  {
+    id: 3,
+    name: "pipo",
+    price: 1500,
+    originalPrice: 2000,
+    rating: 4.7,
+    reviews: 56,
+    image: "/product-tape.png",
+    category: "tools",
+    brand: "Stanley",
+    inStock: true,
+    discount: 25,
+    loyaltyPoints: 15,
+    featured: true,
+  },
+  {
+    id: 4,
+    name: "pipo",
+    price: 12000,
+    originalPrice: 15000,
+    rating: 4.6,
+    reviews: 32,
+    image: "/product-tool-belt.png",
+    category: "tools",
+    brand: "Stanley",
+    inStock: true,
+    discount: 20,
+    loyaltyPoints: 120,
+    featured: true,
+  },
+  {
+    id: 5,
+    name: "Professional Plumber's Tool Belt",
+    price: 12000,
+    originalPrice: 15000,
+    rating: 4.6,
+    reviews: 32,
+    image: "/product-tool-belt.png",
+    category: "tools",
+    brand: "Stanley",
+    inStock: true,
+    discount: 20,
+    loyaltyPoints: 120,
+    featured: true,
+  },
+  {
+    id: 6,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 7,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 8,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 9,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 10,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 11,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 12,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 13,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 14,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 15,
+    name: "money",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 16,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 17,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 18,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 19,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 20,
+    name: "High-Efficiency Water Heater - 50 Gallon",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
+  {
+    id: 15,
+    name: "money",
+    price: 150000,
+    originalPrice: 180000,
+    rating: 4.5,
+    reviews: 45,
+    image: "/product-water-heater.png",
+    category: "heaters",
+    brand: "American Standard",
+    inStock: true,
+    discount: 17,
+    loyaltyPoints: 1500,
+    featured: true,
+  },
+
 ]
+
 
 const categories = [
   { id: "all", name: "All Products", count: 1250 },
@@ -56,7 +373,15 @@ const categories = [
   { id: "drains", name: "Drain Solutions", count: 80 },
 ]
 
-const brands = ["Stanley", "Kohler", "American Standard", "Grohe", "Delta", "Moen"]
+const brands = [
+  "Stanley",
+  "Kohler",
+  "American Standard",
+  "Grohe",
+  "Delta",
+  "Moen",
+]
+
 const priceRanges = [
   { label: "Under ₦10,000", min: 0, max: 10000 },
   { label: "₦10,000 - ₦25,000", min: 10000, max: 25000 },
@@ -73,6 +398,77 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("featured")
   const [viewMode, setViewMode] = useState("grid")
   const [showFilters, setShowFilters] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+
+
+
+  const filteredProducts = useMemo(() => {
+    let filtered = Array.isArray(products) ? [...products] : [];
+
+    // 1. Search by name or description
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter((product) => {
+        const name = product?.name?.toLowerCase() || "";
+        const description = product?.description?.toLowerCase() || "";
+        return name.includes(query) || description.includes(query);
+      });
+    }
+
+    // 2. Filter by category
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+
+    // 3. Filter by brand(s)
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedBrands.includes(product.brand)
+      );
+    }
+
+    // 4. Filter by price range
+    if (priceRange?.min != null && priceRange?.max != null) {
+      filtered = filtered.filter(
+        (product) =>
+          product.price >= priceRange.min && product.price <= priceRange.max
+      );
+    }
+
+    // 5. Sorting
+    switch (sortBy) {
+      case "price-low":
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case "rating":
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "newest":
+        filtered.sort((a, b) => new Date(b?.date || 0) - new Date(a?.date || 0));
+        break;
+      case "featured":
+      default:
+        break;
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory, selectedBrands, priceRange, sortBy]);
+
+  const productsPerPage = 8
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+
+  const paginatedProducts = filteredProducts.slice(
+
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  )
+
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-NG", {
@@ -82,40 +478,61 @@ export default function ProductsPage() {
     }).format(price)
   }
 
+
+
+
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
-      <section className="bg-muted/30 py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Products</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl">
-            Discover Nigeria's largest collection of quality plumbing supplies. From basic repairs to complete
-            installations.
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-muted/30 py-12"
+      >
+        <div className="container mx-auto px-4 text-center sm:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Our Products
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto sm:mx-0">
+            Discover Nigeria's largest collection of quality plumbing supplies.
+            From basic repairs to complete installations.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       <main className="container mx-auto px-4 py-8">
-        {/* Search and Filters Bar */}
-        <div className="flex flex-col lg:flex-row gap-4 mb-8">
+        {/* Search and Filters */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col lg:flex-row gap-4 mb-8"
+        >
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
             <Input
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
+              className="pl-10 w-full"
             />
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setShowFilters(!showFilters)} className="lg:hidden">
+
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setShowFilters(!showFilters)}
+              className="lg:hidden w-full sm:w-auto"
+            >
               <Filter className="mr-2 h-4 w-4" />
               Filters
             </Button>
+
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-full sm:w-48">
                 <ArrowUpDown className="mr-2 h-4 w-4" />
                 <SelectValue />
               </SelectTrigger>
@@ -127,6 +544,7 @@ export default function ProductsPage() {
                 <SelectItem value="newest">Newest First</SelectItem>
               </SelectContent>
             </Select>
+
             <div className="flex border rounded-lg">
               <Button
                 variant={viewMode === "grid" ? "default" : "ghost"}
@@ -144,11 +562,16 @@ export default function ProductsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex gap-8">
-          {/* Sidebar Filters */}
-          <aside className={`w-64 space-y-6 ${showFilters ? "block" : "hidden lg:block"}`}>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <motion.aside
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className={`w-full lg:w-64 space-y-6 ${showFilters ? "block" : "hidden lg:block"
+              }`}
+          >
             {/* Categories */}
             <Card>
               <CardContent className="p-4">
@@ -157,13 +580,16 @@ export default function ProductsPage() {
                   {categories.map((category) => (
                     <div
                       key={category.id}
-                      className={`flex items-center justify-between p-2 rounded cursor-pointer hover:bg-muted ${
-                        selectedCategory === category.id ? "bg-green-100 dark:bg-green-900" : ""
-                      }`}
+                      className={`flex items-center justify-between p-2 rounded cursor-pointer hover:bg-muted transition ${selectedCategory === category.id
+                        ? "bg-green-100 dark:bg-green-900"
+                        : ""
+                        }`}
                       onClick={() => setSelectedCategory(category.id)}
                     >
                       <span className="text-sm">{category.name}</span>
-                      <span className="text-xs text-muted-foreground">({category.count})</span>
+                      <span className="text-xs text-muted-foreground">
+                        ({category.count})
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -176,19 +602,31 @@ export default function ProductsPage() {
                 <h3 className="font-semibold mb-4">Price Range</h3>
                 <div className="space-y-2">
                   {priceRanges.map((range, index) => (
-                    <div key={index} className="flex items-center space-x-2">
+                    <div
+                      key={index}
+                      className="flex items-center space-x-2"
+                    >
                       <Checkbox
                         id={`price-${index}`}
-                        checked={priceRange?.min === range.min && priceRange?.max === range.max}
+                        checked={
+                          priceRange?.min === range.min &&
+                          priceRange?.max === range.max
+                        }
                         onCheckedChange={(checked) => {
                           if (checked) {
-                            setPriceRange({ min: range.min, max: range.max })
+                            setPriceRange({
+                              min: range.min,
+                              max: range.max,
+                            })
                           } else {
                             setPriceRange(null)
                           }
                         }}
                       />
-                      <label htmlFor={`price-${index}`} className="text-sm cursor-pointer">
+                      <label
+                        htmlFor={`price-${index}`}
+                        className="text-sm cursor-pointer"
+                      >
                         {range.label}
                       </label>
                     </div>
@@ -203,7 +641,10 @@ export default function ProductsPage() {
                 <h3 className="font-semibold mb-4">Brands</h3>
                 <div className="space-y-2">
                   {brands.map((brand) => (
-                    <div key={brand} className="flex items-center space-x-2">
+                    <div
+                      key={brand}
+                      className="flex items-center space-x-2"
+                    >
                       <Checkbox
                         id={`brand-${brand}`}
                         checked={selectedBrands.includes(brand)}
@@ -211,11 +652,16 @@ export default function ProductsPage() {
                           if (checked) {
                             setSelectedBrands([...selectedBrands, brand])
                           } else {
-                            setSelectedBrands(selectedBrands.filter((b) => b !== brand))
+                            setSelectedBrands(
+                              selectedBrands.filter((b) => b !== brand)
+                            )
                           }
                         }}
                       />
-                      <label htmlFor={`brand-${brand}`} className="text-sm cursor-pointer">
+                      <label
+                        htmlFor={`brand-${brand}`}
+                        className="text-sm cursor-pointer"
+                      >
                         {brand}
                       </label>
                     </div>
@@ -223,118 +669,169 @@ export default function ProductsPage() {
                 </div>
               </CardContent>
             </Card>
-          </aside>
+          </motion.aside>
 
-          {/* Products Grid */}
+          {/* Products */}
           <div className="flex-1">
-            <div className="flex justify-between items-center mb-6">
-              <p className="text-muted-foreground">Showing {products.length} of 1,250 products</p>
-            </div>
+            <p className="text-muted-foreground mb-6">
+              Showing {paginatedProducts.length} of {filteredProducts.length} products
+            </p>
+
 
             <div
-              className={`grid gap-6 ${
-                viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
-              }`}
+              className={`grid gap-6 ${viewMode === "grid"
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                : "grid-cols-1"
+                }`}
             >
-              {products.map((product) => (
-                <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-0">
-                    <div className="relative">
-                      {/* Product Image */}
-                      <div
-                        className={`relative overflow-hidden rounded-t-lg ${
-                          viewMode === "grid" ? "aspect-square" : "aspect-video md:aspect-square md:w-48"
-                        }`}
-                      >
-                        <Image
-                          src={product.image || "/placeholder.svg"}
-                          alt={product.name}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-
-                        {/* Badges */}
-                        <div className="absolute top-3 left-3 flex flex-col gap-2">
-                          {product.featured && <Badge className="bg-yellow-500 text-black">Featured</Badge>}
-                          {product.discount > 0 && <Badge variant="destructive">-{product.discount}%</Badge>}
+              {paginatedProducts.map((product) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: (product.id % productsPerPage) * 0.1,
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="group hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 ease-in-out rounded-2xl overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="relative">
+                        <div
+                          className={`relative overflow-hidden rounded-t-lg ${viewMode === "grid"
+                            ? "aspect-square"
+                            : "aspect-video md:aspect-square md:w-48"
+                            }`}
+                        >
+                          <Image
+                            src={product.image || "/placeholder.svg"}
+                            alt={product.name}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute top-3 left-3 flex flex-col gap-2">
+                            {product.featured && (
+                              <Badge className="bg-yellow-500 text-black">
+                                Featured
+                              </Badge>
+                            )}
+                            {product.discount > 0 && (
+                              <Badge variant="destructive">
+                                -{product.discount}%
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Button
+                              size="icon"
+                              variant="secondary"
+                              className="h-8 w-8 rounded-full"
+                            >
+                              <Heart className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="secondary"
+                              className="h-8 w-8 rounded-full"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
 
-                        {/* Action Buttons */}
-                        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button size="icon" variant="secondary" className="h-8 w-8 rounded-full">
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                          <Button size="icon" variant="secondary" className="h-8 w-8 rounded-full">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-
-                      {/* Product Info */}
-                      <div className="p-4">
-                        <div className="flex items-center gap-1 mb-2">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`h-3 w-3 ${
-                                  i < Math.floor(product.rating)
+                        <div className="p-4">
+                          <div className="flex items-center gap-1 mb-2">
+                            <div className="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`h-3 w-3 ${i < Math.floor(product.rating)
                                     ? "text-yellow-400 fill-current"
                                     : "text-muted-foreground"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-xs text-muted-foreground">({product.reviews})</span>
-                        </div>
-
-                        <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
-                          {product.name}
-                        </h3>
-
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="text-lg font-bold text-green-600 naira-symbol">
-                            {formatPrice(product.price)}
-                          </span>
-                          {product.originalPrice && (
-                            <span className="text-sm text-muted-foreground line-through">
-                              {formatPrice(product.originalPrice)}
+                                    }`}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-xs text-muted-foreground">
+                              ({product.reviews})
                             </span>
+                          </div>
+
+                          <h3 className="font-semibold text-sm mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
+                            {product.name}
+                          </h3>
+
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-lg font-bold text-green-600">
+                              {formatPrice(product.price)}
+                            </span>
+                            {product.originalPrice && (
+                              <span className="text-sm text-muted-foreground line-through">
+                                {formatPrice(product.originalPrice)}
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="text-xs text-muted-foreground mb-4">
+                            Earn {product.loyaltyPoints} loyalty points
+                          </div>
+
+                          <Button className="w-full" size="sm">
+                            <ShoppingCart className="h-4 w-4 mr-2" />
+                            Add to Cart
+                          </Button>
+
+                          {product.inStock && (
+                            <p className="text-xs text-green-600 mt-2 text-center">
+                              ✓ In Stock - Ships within 24hrs
+                            </p>
                           )}
                         </div>
-
-                        <div className="text-xs text-muted-foreground mb-4">
-                          Earn {product.loyaltyPoints} loyalty points
-                        </div>
-
-                        <Button className="w-full" size="sm">
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          Add to Cart
-                        </Button>
-
-                        {product.inStock && (
-                          <p className="text-xs text-green-600 mt-2 text-center">✓ In Stock - Ships within 24hrs</p>
-                        )}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center mt-12">
-              <div className="flex gap-2">
-                <Button variant="outline" disabled>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-center mt-12"
+            >
+              <div className="flex gap-2 flex-wrap">
+                <Button
+                  variant="outline"
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                >
                   Previous
                 </Button>
-                <Button variant="default">1</Button>
-                <Button variant="outline">2</Button>
-                <Button variant="outline">3</Button>
-                <Button variant="outline">Next</Button>
+
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <Button
+                    key={index + 1}
+                    variant={currentPage === index + 1 ? "default" : "outline"}
+                    onClick={() => setCurrentPage(index + 1)}
+                  >
+                    {index + 1}
+                  </Button>
+                ))}
+
+                <Button
+                  variant="outline"
+                  disabled={currentPage === totalPages}
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                >
+                  Next
+                </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
+
         </div>
       </main>
 

@@ -25,6 +25,7 @@
     "detect-libc": "^2.0.4",
     "detect-node-es": "^1.1.0",
     "enhanced-resolve": "^5.18.3",
+    "framer-motion": "^12.23.12",
     "get-nonce": "^1.0.1",
     "graceful-fs": "^4.2.11",
     "is-arrayish": "^0.3.2",
