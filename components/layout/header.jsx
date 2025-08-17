@@ -176,10 +176,10 @@ export function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger className="hover:text-green-600 font-medium">Products</DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem><Link href="/products/pipes">Pipes & Fittings</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link href="/products/bathroom">Bathroom Fixtures</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link href="/products/tools">Tools & Equipment</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link href="/products/water-heaters">Water Heaters</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href="/products">Pipes & Fittings</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href="/products">Bathroom Fixtures</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href="/products">Tools & Equipment</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href="/products">Water Heaters</Link></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="/services" className="hover:text-green-600 font-medium">Services</Link>
