@@ -127,7 +127,7 @@ export function Header() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[260px] sm:w-[300px] px-5">
+              <SheetContent side="right" className="w-[260px] sm:w-[300px] px-5">
                 <SheetHeader className="pt-4">
                   <SheetTitle className="text-left text-xl font-bold text-green-600">Menu</SheetTitle>
                 </SheetHeader>
