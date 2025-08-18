@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { CreditCard, Truck, MapPin, Clock, Shield, Gift } from "lucide-react"
 import Image from "next/image"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 const cartItems = [
   {
@@ -74,7 +74,6 @@ const nigerianStates = [
 
 export default function CheckoutPage() {
   const router = useRouter()
-  const { toast } = useToast()
   const [isProcessing, setIsProcessing] = useState(false)
 
   const [shippingInfo, setShippingInfo] = useState({
