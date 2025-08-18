@@ -1,15 +1,26 @@
-"use client"
+'use client'
 
 import { useState } from "react"
 import { useSearchParams } from "next/navigation"
+import Link from "next/link"
+
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { CheckCircle, Package, Truck, MapPin, Phone, Mail, Download, Share } from "lucide-react"
-import Link from "next/link"
+
+import {
+  CheckCircle,
+  Package as PackageIcon,
+  Truck,
+  MapPin,
+  Phone,
+  Mail,
+  Download,
+  Share
+} from "lucide-react"
 
 export default function OrderConfirmationPage() {
   const searchParams = useSearchParams()
@@ -81,11 +92,10 @@ export default function OrderConfirmationPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Order Details */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Order Info */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Package className="h-5 w-5" />
+                  <PackageIcon className="h-5 w-5" />
                   Order Details
                 </CardTitle>
               </CardHeader>
@@ -111,7 +121,7 @@ export default function OrderConfirmationPage() {
               </CardContent>
             </Card>
 
-            {/* Items Ordered */}
+            {/* Items */}
             <Card>
               <CardHeader>
                 <CardTitle>Items Ordered</CardTitle>
@@ -130,9 +140,7 @@ export default function OrderConfirmationPage() {
                     </div>
                   ))}
                 </div>
-
                 <Separator className="my-4" />
-
                 <div className="flex justify-between items-center text-lg font-bold">
                   <span>Total</span>
                   <span>{formatPrice(orderDetails.total)}</span>
@@ -140,7 +148,7 @@ export default function OrderConfirmationPage() {
               </CardContent>
             </Card>
 
-            {/* Shipping Information */}
+            {/* Shipping */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -154,7 +162,6 @@ export default function OrderConfirmationPage() {
                   <p className="font-medium">{orderDetails.shipping.name}</p>
                   <p className="text-sm">{orderDetails.shipping.address}</p>
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-muted-foreground">Delivery Method</p>
@@ -171,7 +178,6 @@ export default function OrderConfirmationPage() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Quick Actions */}
             <Card>
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
@@ -179,16 +185,14 @@ export default function OrderConfirmationPage() {
               <CardContent className="space-y-3">
                 <Button className="w-full" asChild>
                   <Link href={`/orders/${orderDetails.id}`}>
-                    <Package className="mr-2 h-4 w-4" />
+                    <PackageIcon className="mr-2 h-4 w-4" />
                     Track Your Order
                   </Link>
                 </Button>
-
                 <Button variant="outline" className="w-full bg-transparent">
                   <Download className="mr-2 h-4 w-4" />
                   Download Receipt
                 </Button>
-
                 <Button variant="outline" className="w-full bg-transparent">
                   <Share className="mr-2 h-4 w-4" />
                   Share Order
@@ -196,55 +200,18 @@ export default function OrderConfirmationPage() {
               </CardContent>
             </Card>
 
-            {/* What's Next */}
             <Card>
               <CardHeader>
                 <CardTitle>What's Next?</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="bg-green-100 dark:bg-green-900 p-2 rounded-full">
-                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-300" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Order Confirmed</p>
-                    <p className="text-xs text-muted-foreground">We've received your order</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="bg-muted p-2 rounded-full">
-                    <Package className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Processing</p>
-                    <p className="text-xs text-muted-foreground">We're preparing your items</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="bg-muted p-2 rounded-full">
-                    <Truck className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Shipped</p>
-                    <p className="text-xs text-muted-foreground">Your order is on the way</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="bg-muted p-2 rounded-full">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-sm">Delivered</p>
-                    <p className="text-xs text-muted-foreground">Enjoy your purchase!</p>
-                  </div>
-                </div>
+                <NextStep icon={<CheckCircle className="h-4 w-4 text-green-600 dark:text-green-300" />} title="Order Confirmed" desc="We've received your order" bg="bg-green-100 dark:bg-green-900" />
+                <NextStep icon={<PackageIcon className="h-4 w-4 text-muted-foreground" />} title="Processing" desc="We're preparing your items" />
+                <NextStep icon={<Truck className="h-4 w-4 text-muted-foreground" />} title="Shipped" desc="Your order is on the way" />
+                <NextStep icon={<MapPin className="h-4 w-4 text-muted-foreground" />} title="Delivered" desc="Enjoy your purchase!" />
               </CardContent>
             </Card>
 
-            {/* Support */}
             <Card>
               <CardHeader>
                 <CardTitle>Need Help?</CardTitle>
@@ -264,7 +231,6 @@ export default function OrderConfirmationPage() {
               </CardContent>
             </Card>
 
-            {/* Continue Shopping */}
             <Button variant="outline" className="w-full bg-transparent" asChild>
               <Link href="/products">Continue Shopping</Link>
             </Button>
@@ -273,6 +239,19 @@ export default function OrderConfirmationPage() {
       </main>
 
       <Footer />
+    </div>
+  )
+}
+
+// Component: Clean helper for repeated blocks
+function NextStep({ icon, title, desc, bg = "bg-muted" }) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className={`${bg} p-2 rounded-full`}>{icon}</div>
+      <div>
+        <p className="font-medium text-sm">{title}</p>
+        <p className="text-xs text-muted-foreground">{desc}</p>
+      </div>
     </div>
   )
 }
