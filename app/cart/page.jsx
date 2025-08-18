@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { Trash2, Plus, Minus, ShoppingCart, ArrowRight, Heart, Gift } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 
 const initialCartItems = [
@@ -52,8 +52,7 @@ const initialCartItems = [
 export default function CartPage() {
   const [cartItems, setCartItems] = useState(initialCartItems)
   const [promoCode, setPromoCode] = useState("")
-  const [appliedPromo, setAppliedPromo] = useState<{ code, discount} ()
-  const { toast } = useToast()
+  const [appliedPromo, setAppliedPromo] = useState({ code: "", discount: 0 })
 
   const updateQuantity = (id, newQuantity) => {
     if (newQuantity < 1) return
@@ -106,9 +105,9 @@ export default function CartPage() {
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const totalLoyaltyPoints = cartItems.reduce((sum, item) => sum + item.loyaltyPoints * item.quantity, 0)
-  const discount = appliedPromo ? (subtotal * appliedPromo.discount) / 100 : 0
+  const promoDiscount = appliedPromo ? (subtotal * appliedPromo.discount) / 100 : 0
   const deliveryFee = subtotal > 50000 ? 0 : 2500
-  const total = subtotal - discount + deliveryFee
+  const total = subtotal - promoDiscount + deliveryFee
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-NG", {
@@ -272,7 +271,7 @@ export default function CartPage() {
                 {appliedPromo && (
                   <div className="flex justify-between text-green-600">
                     <span>Discount ({appliedPromo.discount}%)</span>
-                    <span>-{formatPrice(discount)}</span>
+                    <span>-{formatPrice(promoDiscount)}</span>
                   </div>
                 )}
 
