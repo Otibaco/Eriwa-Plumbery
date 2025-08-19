@@ -1,6 +1,18 @@
-import { Wrench, Droplets, ShowerHeadIcon as Shower, Hammer, Settings, Zap, Home, Truck } from "lucide-react"
+"use client"
+
+import {
+  Wrench,
+  Droplets,
+  ShowerHeadIcon as Shower,
+  Hammer,
+  Settings,
+  Zap,
+  Home,
+  Truck,
+} from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 const categories = [
   {
@@ -61,6 +73,20 @@ const categories = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+}
+
 export function CategoryGrid() {
   return (
     <section>
@@ -72,44 +98,50 @@ export function CategoryGrid() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6"
+      >
         {categories.map((category) => (
-          <Link
-            key={category.name}
-            href={`/category/${category.name.toLowerCase().replace(/\s+/g, "-")}`}
-            className="group"
-          >
-            <div className="relative overflow-hidden rounded-2xl border hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              {/* Background image */}
-              <div className="aspect-square relative">
-                <Image
-                  src={category.image || "/placeholder.svg"}
-                  alt={category.name}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+          <motion.div key={category.name} variants={cardVariants}>
+            <Link
+              href={`/category/${category.name.toLowerCase().replace(/\s+/g, "-")}`}
+              className="group block"
+            >
+              <div className="relative overflow-hidden rounded-2xl border hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                {/* Background image */}
+                <div className="aspect-square relative">
+                  <Image
+                    src={category.image || "/placeholder.svg"}
+                    alt={category.name}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
 
-                {/* Content overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
-                  <div
-                    className={`w-12 h-12 rounded-full ${category.color} bg-white/90 flex items-center justify-center`}
-                  >
-                    <category.icon className="h-6 w-6" />
-                  </div>
+                  {/* Content overlay */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
+                    <div
+                      className={`w-12 h-12 rounded-full ${category.color} bg-white/90 flex items-center justify-center`}
+                    >
+                      <category.icon className="h-6 w-6" />
+                    </div>
 
-                  <div>
-                    <h3 className="font-bold text-lg mb-1 group-hover:text-yellow-300 transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-sm text-white/80">{category.count}</p>
+                    <div>
+                      <h3 className="font-bold text-lg mb-1 group-hover:text-yellow-300 transition-colors">
+                        {category.name}
+                      </h3>
+                      <p className="text-sm text-white/80">{category.count}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }
