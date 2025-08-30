@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Play, Shield, Zap, Users } from "lucide-react"
 import Image from "next/image"
 
-// Use 100vh with min-h-screen fallback for full viewport height
 export function HeroSection() {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({
@@ -20,12 +19,7 @@ export function HeroSection() {
     return (
         <section
             ref={ref}
-            className="relative flex items-center justify-center overflow-hidden"
-            style={{
-                minHeight: "100vh",
-                height: "100vh",
-                maxHeight: "100svh", // For mobile browsers supporting small viewport units
-            }}
+            className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
             {/* Background Image with Parallax */}
             <motion.div
@@ -43,7 +37,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-4 text-center text-white flex flex-col justify-center h-full">
+            <div className="relative z-10 container mx-auto px-4 text-center text-white">
                 <div className="max-w-4xl mx-auto space-y-8">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 text-xs sm:text-sm font-medium animate-fade-in">
@@ -86,29 +80,27 @@ export function HeroSection() {
                     </div>
 
                     {/* Stats */}
-                    <div className="w-full flex flex-col items-center pt-12 sm:pt-16 animate-fade-in animation-delay-600">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-3xl">
-                            <div className="flex flex-col items-center bg-blue-600/10 rounded-xl p-6 shadow-sm">
-                                <div className="flex items-center justify-center w-14 h-14 bg-blue-600/20 backdrop-blur-sm rounded-full mb-4">
-                                    <Zap className="w-7 h-7 text-blue-400" />
-                                </div>
-                                <div className="text-2xl sm:text-3xl font-bold mb-1">24/7</div>
-                                <div className="text-gray-400 text-sm sm:text-base text-center">Emergency Service</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12 sm:pt-16 animate-fade-in animation-delay-600">
+                        <div className="text-center">
+                            <div className="flex items-center justify-center w-12 h-12 bg-blue-600/20 backdrop-blur-sm rounded-full mx-auto mb-4">
+                                <Zap className="w-6 h-6 text-blue-400" />
                             </div>
-                            <div className="flex flex-col items-center bg-blue-600/10 rounded-xl p-6 shadow-sm mt-4 sm:mt-0">
-                                <div className="flex items-center justify-center w-14 h-14 bg-blue-600/20 backdrop-blur-sm rounded-full mb-4">
-                                    <Users className="w-7 h-7 text-blue-400" />
-                                </div>
-                                <div className="text-2xl sm:text-3xl font-bold mb-1">1000+</div>
-                                <div className="text-gray-400 text-sm sm:text-base text-center">Happy Customers</div>
+                            <div className="text-2xl sm:text-3xl font-bold">24/7</div>
+                            <div className="text-gray-300 text-sm sm:text-base">Emergency Service</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="flex items-center justify-center w-12 h-12 bg-blue-600/20 backdrop-blur-sm rounded-full mx-auto mb-4">
+                                <Users className="w-6 h-6 text-blue-400" />
                             </div>
-                            <div className="flex flex-col items-center bg-blue-600/10 rounded-xl p-6 shadow-sm mt-4 md:mt-0">
-                                <div className="flex items-center justify-center w-14 h-14 bg-blue-600/20 backdrop-blur-sm rounded-full mb-4">
-                                    <Shield className="w-7 h-7 text-blue-400" />
-                                </div>
-                                <div className="text-2xl sm:text-3xl font-bold mb-1">5 Year</div>
-                                <div className="text-gray-400 text-sm sm:text-base text-center">Warranty</div>
+                            <div className="text-2xl sm:text-3xl font-bold">1000+</div>
+                            <div className="text-gray-300 text-sm sm:text-base">Happy Customers</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="flex items-center justify-center w-12 h-12 bg-blue-600/20 backdrop-blur-sm rounded-full mx-auto mb-4">
+                                <Shield className="w-6 h-6 text-blue-400" />
                             </div>
+                            <div className="text-2xl sm:text-3xl font-bold">5 Year</div>
+                            <div className="text-gray-300 text-sm sm:text-base">Warranty</div>
                         </div>
                     </div>
                 </div>
