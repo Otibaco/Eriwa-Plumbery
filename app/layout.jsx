@@ -1,14 +1,15 @@
 import React, { Suspense } from "react"
 // import { Analytics } from "@vercel/analytics/next"
-
+import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Eriwa Plumbery - Professional Plumbing Services & Products",
   description:
     "Expert plumbing services and high-quality products. Your trusted partner for all plumbing needs.",
-  generator: "v0.app",
   keywords:
     "plumbing, plumber, pipes, fixtures, repair, installation, Eriwa",
   authors: [{ name: "Franklin" }],
@@ -22,7 +23,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased"cz-shortcut-listen="true">
+      <body className={inter.className} cz-shortcut-listen="true">
         <Suspense fallback={null}>
           <ThemeProvider
             attribute="class"
