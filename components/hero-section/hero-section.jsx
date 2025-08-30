@@ -22,9 +22,9 @@ export function HeroSection() {
             ref={ref}
             className="relative flex items-center justify-center overflow-hidden"
             style={{
-                minHeight: "135vh",
-                height: "135vh",
-                maxHeight: "135svh", // For mobile browsers supporting small viewport units
+                minHeight: "100vh",
+                height: "100vh",
+                maxHeight: "100svh", // For mobile browsers supporting small viewport units
             }}
         >
             {/* Background Image with Parallax */}
