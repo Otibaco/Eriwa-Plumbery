@@ -29,11 +29,11 @@ export default function ProductsPage() {
       id: 1,
       name: "Premium Kitchen Faucet",
       category: "fixtures",
-      price: 299.99,
-      originalPrice: 399.99,
+      price: "₦449,985",
+      originalPrice: "₦599,985",
       rating: 4.8,
       reviews: 124,
-      image: "/premium-kitchen-faucet-with-modern-design.png",
+      image: "/Premium Kitchen Faucet.jpg",
       description: "High-quality stainless steel kitchen faucet with pull-down sprayer",
       features: ["Stainless Steel", "Pull-Down Sprayer", "Easy Installation", "10-Year Warranty"],
       inStock: true,
@@ -42,11 +42,11 @@ export default function ProductsPage() {
       id: 2,
       name: "Tankless Water Heater",
       category: "water-heaters",
-      price: 1299.99,
-      originalPrice: 1499.99,
+      price: "₦1,949,985",
+      originalPrice: "₦2,249,985",
       rating: 4.9,
       reviews: 89,
-      image: "/modern-tankless-water-heater-unit.png",
+      image: "/Tankless Water Heater.jpg",
       description: "Energy-efficient tankless water heater for endless hot water",
       features: ["Energy Efficient", "Endless Hot Water", "Compact Design", "Digital Display"],
       inStock: true,
@@ -55,11 +55,11 @@ export default function ProductsPage() {
       id: 3,
       name: "Professional Pipe Wrench Set",
       category: "tools",
-      price: 89.99,
-      originalPrice: 119.99,
+      price: "₦134,985",
+      originalPrice: "₦179,985",
       rating: 4.7,
       reviews: 203,
-      image: "/professional-pipe-wrench-set-tools.png",
+      image: "/Pipe Wrench Set.jpg",
       description: "Complete set of professional-grade pipe wrenches",
       features: ["Durable Steel", "Multiple Sizes", "Ergonomic Grip", "Professional Grade"],
       inStock: true,
@@ -68,11 +68,11 @@ export default function ProductsPage() {
       id: 4,
       name: "Copper Pipe Fittings Kit",
       category: "pipes",
-      price: 45.99,
-      originalPrice: 59.99,
+      price: "₦68,985",
+      originalPrice: "₦89,985",
       rating: 4.6,
       reviews: 156,
-      image: "/copper-pipe-fittings-and-connectors-kit.png",
+      image: "/Copper Pipe Fittings Kit.jpg",
       description: "Complete kit of copper pipe fittings and connectors",
       features: ["Pure Copper", "Various Sizes", "Leak-Proof", "Easy Installation"],
       inStock: true,
@@ -81,11 +81,11 @@ export default function ProductsPage() {
       id: 5,
       name: "Modern Bathroom Sink",
       category: "fixtures",
-      price: 199.99,
-      originalPrice: 249.99,
+      price: "₦299,985",
+      originalPrice: "₦374,985",
       rating: 4.8,
       reviews: 92,
-      image: "/modern-bathroom-sink-with-elegant-design.png",
+      image: "/Modern Bathroom Sink.jpg",
       description: "Elegant ceramic bathroom sink with modern design",
       features: ["Ceramic Material", "Modern Design", "Easy Clean", "Standard Size"],
       inStock: false,
@@ -94,16 +94,17 @@ export default function ProductsPage() {
       id: 6,
       name: "High-Pressure Shower Head",
       category: "fixtures",
-      price: 79.99,
-      originalPrice: 99.99,
+      price: "₦119,985",
+      originalPrice: "₦149,985",
       rating: 4.9,
       reviews: 267,
-      image: "/high-pressure-shower-head-chrome-finish.png",
+      image: "/High-Pressure Shower Head.jpg",
       description: "High-pressure shower head with multiple spray settings",
       features: ["High Pressure", "Multiple Settings", "Chrome Finish", "Water Saving"],
       inStock: true,
     },
-  ]
+  ];
+
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
@@ -215,9 +216,8 @@ export default function ProductsPage() {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${
-                                i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                              }`}
+                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                                }`}
                             />
                           ))}
                         </div>
