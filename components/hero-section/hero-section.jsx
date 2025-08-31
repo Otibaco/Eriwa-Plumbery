@@ -56,8 +56,7 @@ export function HeroSection() {
 
                     {/* Subheading */}
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
-                        Expert services and premium products for all your plumbing needs. Quality workmanship with a satisfaction
-                        guarantee.
+                        Expert Plumbing Services & Premium Products – Reliable Solutions for Every Home and Business, Backed by Quality Workmanship and a 100% Satisfaction Guarantee.
                     </p>
 
                     {/* CTA Buttons */}

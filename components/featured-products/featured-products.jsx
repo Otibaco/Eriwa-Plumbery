@@ -11,31 +11,50 @@ import Image from "next/image"
 export const featuredProducts = [
   {
     id: 1,
-    name: "Premium Copper Pipes",
-    description: "High-quality copper pipes for residential and commercial use",
-    price: "$45.99",
+    name: "Ceramic Wash Basin",
+    description: "Durable and stylish wash basin for modern bathrooms",
+    price: "₦45,000",
     image: "/basin1.jpg",
     rating: 4.8,
     isNew: true,
   },
   {
     id: 2,
-    name: "Modern Faucet Set",
-    description: "Sleek and durable faucet with water-saving technology",
-    price: "$129.99",
+    name: "Luxury Bathtub",
+    description: "Elegant freestanding bathtub with premium finishing",
+    price: "₦250,000",
     image: "/bathtub1.jpg",
     rating: 4.9,
     isHot: true,
   },
   {
     id: 3,
-    name: "Professional Wrench Kit",
-    description: "Complete set of professional-grade plumbing wrenches",
-    price: "$89.99",
+    name: "Rainfall Shower Set",
+    description: "Complete shower kit with overhead and handheld shower",
+    price: "₦85,000",
     image: "/shower1.jpg",
     rating: 4.7,
   },
-]
+  {
+    id: 4,
+    name: "Modern Toilet Seat",
+    description: "Water-efficient ceramic toilet seat with soft-close cover",
+    price: "₦120,000",
+    image: "/toilet1.jpg",
+    rating: 4.6,
+  },
+  {
+    id: 5,
+    name: "PVC Water Pipes",
+    description: "High-strength PVC pipes for plumbing installations",
+    price: "₦18,500",
+    image: "/pipes.jpg",
+    rating: 4.5,
+  },
+
+];
+
+
 
 // ✅ Component just displays them
 export function FeaturedProducts() {
@@ -99,7 +118,7 @@ export function FeaturedProducts() {
                     <span className="text-2xl font-bold text-blue-600">{product.price}</span>
                     <Button size="sm" className="bg-blue-600 hover:bg-blue-700 group">
                       <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                      Add to Cart
+                      Buy now 
                     </Button>
                   </div>
                 </div>
