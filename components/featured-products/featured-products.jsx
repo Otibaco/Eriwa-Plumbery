@@ -34,6 +34,7 @@ export const featuredProducts = [
     price: "₦85,000",
     image: "/shower1.jpg",
     rating: 4.7,
+    isNew: true,
   },
   {
     id: 4,
@@ -42,6 +43,7 @@ export const featuredProducts = [
     price: "₦120,000",
     image: "/toilet1.jpg",
     rating: 4.6,
+    isNew: true,
   },
   {
     id: 5,
@@ -50,6 +52,8 @@ export const featuredProducts = [
     price: "₦18,500",
     image: "/pipes.jpg",
     rating: 4.5,
+    isHot: true,
+    
   },
 
 ];

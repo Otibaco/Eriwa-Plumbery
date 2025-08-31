@@ -52,7 +52,7 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <Image
-                src="/professional-plumbing-team-at-work.png"
+                src="/Teams.jpeg"
                 alt="Eriwa Plumbery team"
                 width={600}
                 height={500}
