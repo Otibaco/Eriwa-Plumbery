@@ -242,7 +242,7 @@ export default function ProductsPage() {
                       <div className="flex gap-2">
                         <Button className="flex-1" disabled={!product.inStock}>
                           <ShoppingCart className="w-4 h-4 mr-2" />
-                          {product.inStock ? "Add to Cart" : "Out of Stock"}
+                          {product.inStock ? "Buy now" : "Out of Stock"}
                         </Button>
                         <Button variant="outline" size="sm" className="bg-transparent">
                           View Details

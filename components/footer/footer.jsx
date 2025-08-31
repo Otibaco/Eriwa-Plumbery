@@ -133,7 +133,9 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">© 2024 Eriwa Plumbery. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Eriwa Plumbery. All rights reserved.
+          </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Privacy Policy
