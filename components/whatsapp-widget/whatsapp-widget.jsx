@@ -16,7 +16,7 @@ export function WhatsAppWidget() {
   }
 
   const handleCallClick = () => {
-    window.location.href = "tel:+15551234567"
+    window.location.href = "tel:+2349150462104"
   }
 
   return (
