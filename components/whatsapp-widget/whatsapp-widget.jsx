@@ -1,114 +1,80 @@
 "use client"
 
 import { useState } from "react"
-import { MessageCircle, X, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent } from "@/components/ui/card"
+import { MessageCircle, X, Phone } from "lucide-react"
 
 export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false)
-  const [message, setMessage] = useState("")
 
-  const whatsappNumber = "+2349150462104"
-
-  const quickMessages = [
-    "I need emergency plumbing service",
-    "What are your service charges?",
-    "Do you deliver to my area?",
-    "I want to book an installation",
-  ]
-
-  // ✅ Fixed version: accepts the message as a parameter
-  const sendWhatsAppMessage = (text) => {
-    const encodedMessage = encodeURIComponent(text)
-    const whatsappUrl = `https://wa.me/${whatsappNumber.replace("+", "")}?text=${encodedMessage}`
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+2349150462104" // Replace with actual WhatsApp business number
+    const message = encodeURIComponent("Hi! I need help with plumbing services.")
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
     window.open(whatsappUrl, "_blank")
   }
 
+  const handleCallClick = () => {
+    window.location.href = "tel:+15551234567"
+  }
+
   return (
-    <>
-      {/* WhatsApp Chat Widget */}
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* Chat bubble */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-4 w-80 max-w-full z-50 shadow-2xl">
-          <CardHeader className="bg-blue-600 text-white rounded-t-lg">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <MessageCircle className="h-6 w-6 text-green-600" />
+        <Card className="mb-4 w-80 shadow-xl animate-in slide-in-from-bottom-2">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-sm">Eriwa Plumbery</CardTitle>
-                  <p className="text-xs text-green-100">Usually replies instantly</p>
+                  <h4 className="font-semibold text-sm">Eriwa Plumbery</h4>
+                  <p className="text-xs text-muted-foreground">Online now</p>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-green-700"
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="h-4 w-4" />
+              <Button variant="ghost" size="sm" className="p-1 h-auto" onClick={() => setIsOpen(false)}>
+                <X className="w-4 h-4" />
               </Button>
-            </div>
-          </CardHeader>
-
-          <CardContent className="p-4">
-            <div className="space-y-3 mb-4">
-              <div className="bg-green-100 p-3 rounded-lg text-sm text-gray-600">
-                <p className="font-medium">Hello! 👋</p>
-                <p>
-                  How can we help you today? We're available 24/7 for emergency services!
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <p className="text-xs text-muted-foreground">Quick messages:</p>
-                {quickMessages.map((msg, index) => (
-                  <button
-                    key={index}
-                    onClick={() => sendWhatsAppMessage(msg)}
-                    className="block w-full text-left p-2 text-sm bg-muted hover:bg-green-100 rounded transition-colors"
-                  >
-                    {msg}
-                  </button>
-                ))}
-              </div>
             </div>
 
             <div className="space-y-3">
-              <Textarea
-                placeholder="Type your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="min-h-[80px] resize-none"
-              />
-              <Button
-                onClick={() => {
-                  if (message.trim()) {
-                    sendWhatsAppMessage(message)
-                    setMessage("")
-                  }
-                }}
-                className="w-full whatsapp-green hover:bg-green-700"
-                disabled={!message.trim()}
-              >
-                <Send className="h-4 w-4 mr-2" />
-                Send Message
-              </Button>
+              <div className="bg-muted p-3 rounded-lg">
+                <p className="text-sm">👋 Hi there! Need plumbing help? We're here to assist you 24/7.</p>
+              </div>
+
+              <div className="space-y-2">
+                <Button
+                  onClick={handleWhatsAppClick}
+                  className="w-full bg-green-500 hover:bg-green-600 text-white"
+                  size="sm"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Chat on WhatsApp
+                </Button>
+
+                <Button onClick={handleCallClick} variant="outline" className="w-full bg-transparent" size="sm">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
+                </Button>
+              </div>
+
+              <p className="text-xs text-muted-foreground text-center">Emergency service available 24/7</p>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Floating WhatsApp Button */}
+      {/* WhatsApp button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 w-14 h-14 rounded-full whatsapp-green hover:bg-green-700 shadow-lg z-50"
-        size="icon"
+        className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+        size="sm"
       >
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </Button>
-    </>
+    </div>
   )
 }
