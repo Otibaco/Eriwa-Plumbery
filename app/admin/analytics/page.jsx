@@ -10,7 +10,7 @@ import { Eye, TrendingUp, Users, MousePointer, RefreshCw } from "lucide-react"
 import { analytics } from "@/lib/analytics"
 
 export default function AdminAnalyticsPage() {
-  const [analyticsData, setAnalyticsData] = useState<any>(null)
+  const [analyticsData, setAnalyticsData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const loadAnalyticsData = () => {
