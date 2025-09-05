@@ -49,11 +49,11 @@ export default function ProductsPage() {
       id: 1,
       name: "Premium Kitchen Faucet",
       category: "fixtures",
-      price: 299.99,
-      originalPrice: 399.99,
+      price: "479,984",
+      originalPrice: "639,984",
       rating: 4.8,
       reviews: 124,
-      image: "/premium-kitchen-faucet-with-modern-design.png",
+      image: "/Premium Kitchen Faucet.jpg",
       description: "High-quality stainless steel kitchen faucet with pull-down sprayer",
       features: ["Stainless Steel", "Pull-Down Sprayer", "Easy Installation", "10-Year Warranty"],
       inStock: true,
@@ -62,11 +62,11 @@ export default function ProductsPage() {
       id: 2,
       name: "Tankless Water Heater",
       category: "water-heaters",
-      price: 1299.99,
-      originalPrice: 1499.99,
+      price: "2,079,984",
+      originalPrice: "2,399,984",
       rating: 4.9,
       reviews: 89,
-      image: "/modern-tankless-water-heater-unit.png",
+      image: "/Tankless Water Heater.jpg",
       description: "Energy-efficient tankless water heater for endless hot water",
       features: ["Energy Efficient", "Endless Hot Water", "Compact Design", "Digital Display"],
       inStock: true,
@@ -75,37 +75,41 @@ export default function ProductsPage() {
       id: 3,
       name: "Professional Pipe Wrench Set",
       category: "tools",
-      price: 89.99,
-      originalPrice: 119.99,
+      price: "143,984",
+      originalPrice: "191,984",
       rating: 4.7,
       reviews: 203,
-      image: "/professional-pipe-wrench-set-tools.png",
+      image: "/Copper Pipe Fittings Kit.jpg",
       description: "Complete set of professional-grade pipe wrenches",
       features: ["Durable Steel", "Multiple Sizes", "Ergonomic Grip", "Professional Grade"],
       inStock: true,
     },
-    ...Array.from({ length: 97 }, (_, i) => ({
-      id: i + 7,
-      name: `Plumbing Product ${i + 7}`,
-      category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
-      price: Math.floor(Math.random() * 500) + 50,
-      originalPrice: Math.floor(Math.random() * 200) + 300,
-      rating: Math.floor(Math.random() * 2) + 4,
-      reviews: Math.floor(Math.random() * 300) + 10,
-      image: "/plumbing-product.png",
-      description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
-      features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
-      inStock: Math.random() > 0.1,
-    })),
+    ...Array.from({ length: 97 }, (_, i) => {
+      const price = (Math.floor(Math.random() * 500) + 50) * 1600
+      const originalPrice = (Math.floor(Math.random() * 200) + 300) * 1600
+      return {
+        id: i + 7,
+        name: `Plumbing Product ${i + 7}`,
+        category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
+        price: price.toLocaleString(),
+        originalPrice: originalPrice.toLocaleString(),
+        rating: Math.floor(Math.random() * 2) + 4,
+        reviews: Math.floor(Math.random() * 300) + 10,
+        image: "/plumbing-product.png",
+        description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
+        features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
+        inStock: Math.random() > 0.1,
+      }
+    }),
     {
       id: 4,
       name: "Copper Pipe Fittings Kit",
       category: "pipes",
-      price: 45.99,
-      originalPrice: 59.99,
+      price: "73,584",
+      originalPrice: "95,984",
       rating: 4.6,
       reviews: 156,
-      image: "/copper-pipe-fittings-and-connectors-kit.png",
+      image: "/Copper Pipe Fittings Kit.jpg",
       description: "Complete kit of copper pipe fittings and connectors",
       features: ["Pure Copper", "Various Sizes", "Leak-Proof", "Easy Installation"],
       inStock: true,
@@ -114,11 +118,11 @@ export default function ProductsPage() {
       id: 5,
       name: "Modern Bathroom Sink",
       category: "fixtures",
-      price: 199.99,
-      originalPrice: 249.99,
+      price: "319,984",
+      originalPrice: "399,984",
       rating: 4.8,
       reviews: 92,
-      image: "/modern-bathroom-sink-with-elegant-design.png",
+      image: "/Modern Bathroom Sink.jpg",
       description: "Elegant ceramic bathroom sink with modern design",
       features: ["Ceramic Material", "Modern Design", "Easy Clean", "Standard Size"],
       inStock: false,
@@ -127,16 +131,18 @@ export default function ProductsPage() {
       id: 6,
       name: "High-Pressure Shower Head",
       category: "fixtures",
-      price: 79.99,
-      originalPrice: 99.99,
+      price: "127,984",
+      originalPrice: "159,984",
       rating: 4.9,
       reviews: 267,
-      image: "/high-pressure-shower-head-chrome-finish.png",
+      image: "/High-Pressure Shower Head.jpg",
       description: "High-pressure shower head with multiple spray settings",
       features: ["High Pressure", "Multiple Settings", "Chrome Finish", "Water Saving"],
       inStock: true,
     },
   ]
+
+
 
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = products.filter((product) => {
@@ -323,7 +329,7 @@ export default function ProductsPage() {
                         />
                         {product.originalPrice > product.price && (
                           <Badge className="absolute top-2 left-2 bg-destructive">
-                            Save ${(product.originalPrice - product.price).toFixed(0)}
+                            Save ₦{(product.originalPrice - product.price).toFixed(0)}
                           </Badge>
                         )}
                         {!product.inStock && (
@@ -340,9 +346,9 @@ export default function ProductsPage() {
                         <div className="flex items-start justify-between">
                           <CardTitle className="text-base line-clamp-2 leading-tight">{product.name}</CardTitle>
                           <div className="text-right flex-shrink-0 ml-2">
-                            <div className="text-lg font-bold text-primary">${product.price}</div>
+                            <div className="text-lg font-bold text-primary">₦{product.price}</div>
                             {product.originalPrice > product.price && (
-                              <div className="text-xs text-muted-foreground line-through">${product.originalPrice}</div>
+                              <div className="text-xs text-muted-foreground line-through">₦{product.originalPrice}</div>
                             )}
                           </div>
                         </div>
@@ -352,9 +358,8 @@ export default function ProductsPage() {
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`w-3 h-3 ${
-                                  i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                                }`}
+                                className={`w-3 h-3 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                                  }`}
                               />
                             ))}
                           </div>
@@ -370,7 +375,7 @@ export default function ProductsPage() {
                         <div className="flex gap-2">
                           <Button size="sm" className="flex-1 text-xs" disabled={!product.inStock}>
                             <ShoppingCart className="w-3 h-3 mr-1" />
-                            {product.inStock ? "Add to Cart" : "Out of Stock"}
+                            {product.inStock ? "Buy now" : "Out of Stock"}
                           </Button>
                           <Button
                             variant="outline"
@@ -396,7 +401,7 @@ export default function ProductsPage() {
                             <div className="flex items-start justify-between mb-2">
                               <h3 className="font-semibold text-lg line-clamp-1">{product.name}</h3>
                               <div className="text-right flex-shrink-0 ml-4">
-                                <div className="text-xl font-bold text-primary">${product.price}</div>
+                                <div className="text-xl font-bold text-primary">₦{product.price}</div>
                                 {product.originalPrice > product.price && (
                                   <div className="text-sm text-muted-foreground line-through">
                                     ${product.originalPrice}
@@ -410,9 +415,8 @@ export default function ProductsPage() {
                                 {[...Array(5)].map((_, i) => (
                                   <Star
                                     key={i}
-                                    className={`w-4 h-4 ${
-                                      i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                                    }`}
+                                    className={`w-4 h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                                      }`}
                                   />
                                 ))}
                               </div>
@@ -437,7 +441,7 @@ export default function ProductsPage() {
                               <div className="flex gap-2">
                                 <Button size="sm" disabled={!product.inStock}>
                                   <ShoppingCart className="w-4 h-4 mr-2" />
-                                  {product.inStock ? "Add to Cart" : "Out of Stock"}
+                                  {product.inStock ? "Buy now" : "Out of Stock"}
                                 </Button>
                                 <Button variant="outline" size="sm" onClick={() => handleProductView(product)}>
                                   View Details
@@ -540,7 +544,7 @@ export default function ProductsPage() {
                 variant="outline"
                 className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
               >
-                Get Quote
+                Get Demo
               </Button>
             </div>
           </AnimatedSection>

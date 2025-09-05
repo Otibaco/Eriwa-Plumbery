@@ -54,11 +54,11 @@ export function Navigation() {
             <ThemeToggle />
             <Button variant="outline" size="sm" className="text-xs xl:text-sm bg-transparent">
               <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              <span className="hidden xl:inline">(555) 123-4567</span>
+              <span className="hidden xl:inline">(+234) 703 132 0510</span>
               <span className="xl:hidden">Call</span>
             </Button>
             <Button size="sm" className="text-xs xl:text-sm">
-              Get Quote
+              Get Demo
             </Button>
           </div>
 
@@ -119,9 +119,9 @@ export function Navigation() {
                   <div className="flex flex-col gap-4 mt-4 px-4">
                     <Button variant="outline" className="w-full h-12 text-base bg-transparent">
                       <Phone className="w-4 h-4 mr-2" />
-                      (555) 123-4567
+                      (+234) 703 132 0510
                     </Button>
-                    <Button className="w-full h-12 text-base">Get Free Quote</Button>
+                    <Button className="w-full h-12 text-base">Get Free Demo</Button>
                   </div>
                 </div>
               </SheetContent>
