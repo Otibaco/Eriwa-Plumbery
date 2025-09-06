@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 export function HeroSection() {
   // real one
   // const backgroundImages = ["/professional-plumber-working-on-pipes-in-modern-ba.png", "/plumbing-tools-and-equipment-on-clean-workspace.png", "/modern-kitchen-with-professional-plumbing-installa.png"]
-  const backgroundImages = ["/pipes.jpg", "/backgroundplumbery.jpg", "/tools-materials.jpg"]
+  const backgroundImages = [ "/tools-materials.jpg","/pipes.jpg"]
 
   const [currentSlide, setCurrentSlide] = useState(0)
 
