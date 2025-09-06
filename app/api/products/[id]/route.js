@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/connectDB";
-import Product from "@/models/Product";
 import { requireAdmin } from "@/lib/auth-guard";
+import Product from "models/Product";
 
 export async function GET(_req, { params }) {
   await connectDB();
