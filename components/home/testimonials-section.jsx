@@ -9,23 +9,25 @@ import { motion } from "framer-motion"
 export function TestimonialsSection() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      location: "Downtown",
+      name: "Aisha Bello",
+      location: "Zaria",
+      rating: 5,
+      text: "I ordered plumbing tools from Eriwa Plumbery and got them delivered fast. The products were top quality, fairly priced, and exactly what I needed.",
+    },
+
+    {
+      name: "Semi Ola",
+      location: "Onitsha",
       rating: 5,
       text: "Excellent service! They fixed our emergency leak at 2 AM and were professional throughout. Highly recommend Eriwa Plumbery!",
     },
     {
-      name: "Mike Chen",
-      location: "Suburbs",
+      name: "Chinedu Akpan",
+      location: "Sapelle",
       rating: 5,
       text: "Professional installation of our new water heater. Fair pricing, quality work, and they cleaned up perfectly. Will use again!",
     },
-    {
-      name: "Lisa Rodriguez",
-      location: "City Center",
-      rating: 5,
-      text: "Fast response time and expert drain cleaning service. The technician explained everything clearly and the pricing was transparent.",
-    },
+
   ]
 
   return (

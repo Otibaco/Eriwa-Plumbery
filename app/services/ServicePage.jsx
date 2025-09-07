@@ -14,25 +14,25 @@ export default function ServicesPage() {
     {
       title: "Emergency Leak Repairs",
       description: "24/7 emergency response for burst pipes, leaking faucets, and water damage prevention.",
-      price: "Starting at $89",
+      price: "₦23,000",
       features: ["24/7 availability", "Same-day service", "Water damage prevention", "Insurance documentation"],
     },
     {
       title: "Drain Cleaning & Unclogging",
       description: "Professional drain cleaning using advanced equipment to clear blockages and restore flow.",
-      price: "Starting at $129",
+      price: "₦34,000",
       features: ["Hydro jetting", "Camera inspection", "Root removal", "Preventive maintenance"],
     },
     {
       title: "Water Heater Repair",
       description: "Expert diagnosis and repair of gas, electric, and tankless water heating systems.",
-      price: "Starting at $149",
+      price: "₦41,000",
       features: ["All heater types", "Energy efficiency check", "Safety inspection", "Parts warranty"],
     },
     {
       title: "Toilet & Fixture Repair",
       description: "Complete repair services for toilets, sinks, showers, and bathroom fixtures.",
-      price: "Starting at $79",
+      price: "₦20,000",
       features: ["Running toilets", "Leaky faucets", "Shower repairs", "Fixture replacement"],
     },
   ]
@@ -41,25 +41,25 @@ export default function ServicesPage() {
     {
       title: "Complete Bathroom Installation",
       description: "Full bathroom renovations including plumbing, fixtures, and modern upgrades.",
-      price: "Starting at $2,499",
+      price: "₦780,000",
       features: ["Design consultation", "Permit handling", "Quality fixtures", "Project management"],
     },
     {
       title: "Kitchen Plumbing Installation",
       description: "Professional installation of kitchen sinks, dishwashers, and water filtration systems.",
-      price: "Starting at $899",
+      price: "₦280,000",
       features: ["Sink installation", "Dishwasher hookup", "Water filters", "Garbage disposal"],
     },
     {
       title: "Water Heater Installation",
       description: "Professional installation of new water heaters with energy-efficient options.",
-      price: "Starting at $1,299",
+      price: "₦380,000",
       features: ["Energy efficient models", "Proper sizing", "Code compliance", "Extended warranty"],
     },
     {
       title: "Pipe Installation & Repiping",
       description: "Complete pipe installation and whole-house repiping with modern materials.",
-      price: "Starting at $3,999",
+      price: "₦1,200,000",
       features: ["Modern materials", "Pressure testing", "Minimal disruption", "Lifetime warranty"],
     },
   ]
@@ -75,19 +75,19 @@ export default function ServicesPage() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Wrench className="w-8 h-8" />
               <Badge variant="secondary" className="text-sm">
-                Professional Services
+                Services & Products
               </Badge>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">Expert Plumbing Services</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">Expert Plumbing Services & Sales</h1>
             <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8 text-pretty">
-              From emergency repairs to complete installations, our certified plumbers deliver reliable solutions for
-              your home and business.
+              From emergency repairs and professional installations to selling top-quality plumbing products — we
+              provide everything you need for your home or business in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" variant="secondary" className="text-lg px-8">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call Now: (555) 123-4567
+                  Call Now: (+234) 703 132 0510
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -136,6 +136,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Emergency Repairs & Maintenance</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
               Fast, reliable repair services to get your plumbing back to working order. Available 24/7 for emergencies.
+              We also sell parts and products needed for repairs — ask about available replacement parts.
             </p>
           </AnimatedSection>
 
@@ -187,7 +188,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Professional Installations</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
               Complete installation services for new construction, renovations, and upgrades with quality materials and
-              expert craftsmanship.
+              expert craftsmanship. We also supply the parts and fittings needed — buy direct from our catalog.
             </p>
           </AnimatedSection>
 
@@ -234,7 +235,8 @@ export default function ServicesPage() {
           <AnimatedSection animation="fadeInUp" className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Why Choose Eriwa Plumbery?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              We're committed to providing exceptional service with guaranteed satisfaction.
+              We're committed to providing exceptional service with guaranteed satisfaction — and we sell quality
+              plumbing products so you can buy parts and tools directly from us.
             </p>
           </AnimatedSection>
 
@@ -278,13 +280,13 @@ export default function ServicesPage() {
           <AnimatedSection animation="fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to Get Started?</h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto text-pretty">
-              Contact us today for a free consultation and quote on your plumbing project.
+              Contact us today for a free consultation, quote, or to purchase parts and plumbing products from our store.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" variant="secondary" className="text-lg px-8">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call (555) 123-4567
+                  Call (+234) 703 132 0510
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

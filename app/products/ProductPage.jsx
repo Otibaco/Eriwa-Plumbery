@@ -555,7 +555,7 @@ export default function ProductsPage() {
                 variant="outline"
                 className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
               >
-                Get Demo
+                Get Quote
               </Button>
             </div>
           </AnimatedSection>

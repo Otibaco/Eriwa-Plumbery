@@ -32,24 +32,24 @@ export default function AboutPage() {
 
   const team = [
     {
-      name: "John Smith",
+      name: "Ifeoma Nwankwo",
       role: "Master Plumber & Owner",
       experience: "15+ years",
-      image: "/experienced-master-plumber-john-smith.png",
+      image: "/sewa-owoeye.jpg",
       description: "Licensed master plumber with expertise in residential and commercial plumbing systems.",
     },
     {
-      name: "Maria Rodriguez",
+      name: "micheal ogungbe",
       role: "Senior Plumber",
       experience: "10+ years",
-      image: "/senior-plumber-maria-rodriguez.png",
+      image: "/micheal-ogungbe.jpg",
       description: "Specialist in water heater installation and emergency repairs with excellent customer service.",
     },
     {
-      name: "David Chen",
+      name: "Folake Ogunleye",
       role: "Installation Specialist",
       experience: "8+ years",
-      image: "/installation-specialist-david-chen.png",
+      image: "/itoro-bernard.jpg",
       description: "Expert in bathroom and kitchen renovations with focus on modern plumbing solutions.",
     },
   ]
@@ -103,7 +103,7 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call (555) 123-4567
+                  Call (+234) 703 132 0510
                 </Button>
                 <Button
                   size="lg"
@@ -158,7 +158,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fadeInLeft">
               <img
-                src="/eriwa-plumbery-company-history-and-growth.png"
+                src="/Team story.jpg"
                 alt="Company history"
                 className="rounded-lg shadow-lg"
               />
@@ -244,7 +244,7 @@ export default function AboutPage() {
             <Badge variant="outline" className="mb-4">
               Our Team
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Meet Our Expert Plumbers</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Our Management & Support Team</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
               Our certified professionals bring years of experience and dedication to every job.
             </p>
@@ -333,7 +333,7 @@ export default function AboutPage() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" variant="secondary" className="text-lg px-8 bg-white text-primary hover:bg-gray-100">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call (555) 123-4567
+                  Call (+234) 703 132 0510
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

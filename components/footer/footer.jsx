@@ -72,7 +72,7 @@ export function Footer() {
                 href="/services#repairs"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Emergency Repairs
+                Products
               </Link>
               <Link
                 href="/services#installations"
@@ -84,7 +84,8 @@ export function Footer() {
                 href="/services#maintenance"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Maintenance
+                                Emergency Repairs
+
               </Link>
               <Link
                 href="/services#drain-cleaning"

@@ -8,7 +8,7 @@ import { Phone, CheckCircle, Star, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function HeroSection() {
-  const backgroundImages = ["/tools-materials.jpg", "/pipes.jpg"]
+  const backgroundImages = ["/tools-materials.jpg", "/pipes.jpg","/plumbery service image.webp","/phone-call-plumbing-service-woman.webp"]
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
@@ -73,8 +73,8 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Professional repair, installation, and emergency services available 24/7. Licensed, insured, and trusted
-              by 500+ customers.
+              Shop quality plumbing tools, pipes, and fittings at the best prices.
+              Plus, get expert repairs, installations, and 24/7 emergency services — trusted by 500+ customers.
             </motion.p>
 
             <motion.div
@@ -85,7 +85,7 @@ export function HeroSection() {
             >
               <Button size="lg" variant="secondary" className="text-lg px-8 bg-white text-primary hover:bg-blue-50">
                 <Phone className="w-5 h-5 mr-2" />
-                Call (555) 123-4567
+                Call (+234) 703 132 0510
               </Button>
               <Button
                 size="lg"
@@ -151,9 +151,8 @@ export function HeroSection() {
           {backgroundImages.map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white" : "bg-white/40"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-white" : "bg-white/40"
+                }`}
               onClick={() => setCurrentSlide(index)}
             />
           ))}

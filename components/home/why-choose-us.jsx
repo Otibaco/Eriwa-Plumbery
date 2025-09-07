@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { ShieldCheck, Clock, Award, Users, Wrench, Star } from "lucide-react"
+import { ShieldCheck, Clock, Award, Users, Wrench, Star, ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function WhyChooseUs() {
@@ -14,20 +14,17 @@ export function WhyChooseUs() {
       description: "Fully licensed, bonded, and insured for your complete peace of mind and protection.",
     },
     {
-      icon: Clock,
-      title: "24/7 Emergency Service",
-      description: "Round-the-clock emergency service because plumbing problems don't wait for business hours.",
+      icon: ShoppingCart,
+      title: "Plumbing Products",
+      description: "We don’t just fix — we also sell top-quality plumbing tools, pipes, and fittings at great prices.",
     },
+
     {
       icon: Award,
       title: "Satisfaction Guaranteed",
       description: "100% satisfaction guarantee on all our work with comprehensive warranties included.",
     },
-    {
-      icon: Users,
-      title: "Experienced Team",
-      description: "Over 15 years of experience with certified plumbers who stay updated on latest techniques.",
-    },
+
     {
       icon: Wrench,
       title: "Quality Equipment",
@@ -38,6 +35,12 @@ export function WhyChooseUs() {
       title: "5-Star Reviews",
       description: "Consistently rated 5 stars by our customers for quality work and excellent service.",
     },
+    {
+      icon: Clock,
+      title: "24/7 Emergency Service",
+      description: "Round-the-clock emergency service because plumbing problems don't wait for business hours.",
+    },
+
   ]
 
   return (
@@ -47,9 +50,12 @@ export function WhyChooseUs() {
           <Badge variant="outline" className="mb-4">
             Why Choose Us
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Why Eriwa Plumbery is Your Best Choice</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
+            Why Eriwa Plumbery is Your Best Choice
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            We're committed to providing exceptional service with guaranteed satisfaction and professional expertise.
+            At Eriwa Plumbery, we provide expert plumbing services and also sell high-quality plumbing products —
+            everything you need in one place.
           </p>
         </AnimatedSection>
 

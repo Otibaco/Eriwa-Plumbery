@@ -5,55 +5,62 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { Wrench, Hammer, Droplets, Zap, ArrowRight } from "lucide-react"
+import { Wrench, Hammer, Droplets, Zap, ArrowRight, ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function ServicesPreview() {
   const services = [
     {
-      icon: Wrench,
-      title: "Emergency Repairs",
-      description: "24/7 emergency plumbing repairs for leaks, burst pipes, and urgent issues.",
-      price: "Starting at $89",
-      features: ["24/7 availability", "Same-day service", "Licensed technicians"],
+      icon: ShoppingCart,
+      title: "Plumbing Products",
+      description: "We sell top-quality plumbing products including pipes, fittings, sinks, and more.",
+      price: "₦20,000",
+      features: ["Affordable prices", "Durable products", "Wide variety"],
     },
+
     {
       icon: Hammer,
       title: "Professional Installation",
-      description: "Expert installation of fixtures, water heaters, and complete plumbing systems.",
-      price: "Starting at $299",
+      description: "Expert installation of fixtures, water heaters, and plumbing systems.",
+      price: "₦78,000",
       features: ["Quality materials", "Code compliance", "Warranty included"],
     },
+
     {
-      icon: Droplets,
-      title: "Drain Cleaning",
-      description: "Professional drain cleaning and unclogging using advanced equipment.",
-      price: "Starting at $129",
-      features: ["Hydro jetting", "Camera inspection", "Root removal"],
+      icon: Wrench,
+      title: "Emergency Repairs",
+      description: "24/7 plumbing repairs for leaks, burst pipes, and urgent issues.",
+      price: "₦23,000",
+      features: ["24/7 availability", "Same-day service", "Licensed technicians"],
     },
     {
       icon: Zap,
       title: "Water Heater Service",
       description: "Complete water heater repair, maintenance, and replacement services.",
-      price: "Starting at $149",
+      price: "₦41,000",
       features: ["All heater types", "Energy efficiency", "Safety inspection"],
     },
+
   ]
 
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <AnimatedSection animation="fadeInUp" className="text-center mb-16">
           <Badge variant="outline" className="mb-4">
-            Our Services
+            Our Services & Products
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Professional Plumbing Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
+            Plumbing Services & Product Sales
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            From emergency repairs to complete installations, we provide comprehensive plumbing solutions for your home
-            and business.
+            From emergency repairs to complete installations, and selling quality plumbing products —
+            we provide everything you need for your home or business.
           </p>
         </AnimatedSection>
 
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {services.map((service, index) => (
             <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
@@ -63,8 +70,13 @@ export function ServicesPreview() {
                     <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
-                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                    <Badge variant="secondary">{service.price}</Badge>
+                    {/* Title + Badge aligned */}
+                    <div className="flex flex-col items-center gap-2">
+                      <CardTitle className="text-xl">{service.title}</CardTitle>
+                      <Badge variant="secondary" className="px-3 py-1 text-sm">
+                        {service.price}
+                      </Badge>
+                    </div>
                   </CardHeader>
                   <CardContent className="text-center">
                     <p className="text-muted-foreground mb-4">{service.description}</p>
@@ -85,6 +97,7 @@ export function ServicesPreview() {
           ))}
         </div>
 
+        {/* CTA */}
         <AnimatedSection animation="fadeInUp" delay={0.5} className="text-center">
           <Link href="/services">
             <Button size="lg" className="text-lg px-8">
