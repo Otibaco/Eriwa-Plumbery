@@ -3,39 +3,40 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ParallaxHero } from "@/components/ui/parallax-hero"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Phone, CheckCircle, Star, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function HeroSection() {
-  // real one
-  // const backgroundImages = ["/professional-plumber-working-on-pipes-in-modern-ba.png", "/plumbing-tools-and-equipment-on-clean-workspace.png", "/modern-kitchen-with-professional-plumbing-installa.png"]
-  const backgroundImages = [ "/tools-materials.jpg","/pipes.jpg"]
-
+  const backgroundImages = ["/tools-materials.jpg", "/pipes.jpg"]
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % backgroundImages.length)
-    }, 5000) // ⏳ every 5s
+    }, 5000)
     return () => clearInterval(timer)
   }, [backgroundImages.length])
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background slideshow */}
+      {/* ✅ Background slideshow with <img> instead of bg-cover */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImages[currentSlide]})` }}
+            className="absolute inset-0 w-full h-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-          />
+          >
+            <img
+              src={backgroundImages[currentSlide]}
+              alt="Plumbing background"
+              className="w-full h-full object-cover object-center"
+            />
+          </motion.div>
         </AnimatePresence>
         <div className="absolute inset-0 bg-black/50" /> {/* dark overlay */}
       </div>
@@ -120,38 +121,22 @@ export function HeroSection() {
           {/* Right Content - Stats */}
           <AnimatedSection animation="fadeInRight" delay={0.4} className="text-white">
             <div className="grid grid-cols-2 gap-6">
-              <motion.div
-                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold mb-2">500+</div>
-                <div className="text-blue-200">Happy Customers</div>
-              </motion.div>
-              <motion.div
-                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
-                <div className="text-blue-200">Emergency Service</div>
-              </motion.div>
-              <motion.div
-                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold mb-2">15+</div>
-                <div className="text-blue-200">Years Experience</div>
-              </motion.div>
-              <motion.div
-                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold mb-2">100%</div>
-                <div className="text-blue-200">Satisfaction Rate</div>
-              </motion.div>
+              {[
+                { value: "500+", label: "Happy Customers" },
+                { value: "24/7", label: "Emergency Service" },
+                { value: "15+", label: "Years Experience" },
+                { value: "100%", label: "Satisfaction Rate" },
+              ].map((stat, idx) => (
+                <motion.div
+                  key={idx}
+                  className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-3xl md:text-4xl font-bold mb-2">{stat.value}</div>
+                  <div className="text-blue-200">{stat.label}</div>
+                </motion.div>
+              ))}
             </div>
           </AnimatedSection>
         </div>

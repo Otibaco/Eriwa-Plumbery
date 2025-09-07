@@ -212,10 +212,13 @@ export default function ProductsPage() {
                 {categories.map((category) => (
                   <Button
                     key={category.id}
-                    variant={selectedCategory === category.id ? "default" : "outline"}
                     size="sm"
                     onClick={() => handleCategoryChange(category.id)}
-                    className="bg-transparent flex items-center"
+                    className={`flex items-center ${selectedCategory === category.id
+                        ? "bg-background text-foreground shadow-sm border" // ✅ active button matches theme
+                        : "bg-transparent"
+                      }`}
+                    variant="outline"
                   >
                     <category.icon className="w-4 h-4 mr-2" />
                     <span className="text-sm">{category.name}</span>
@@ -281,6 +284,7 @@ export default function ProductsPage() {
           </AnimatedSection>
         </div>
       </section>
+
 
 
       {/* Products Section */}
