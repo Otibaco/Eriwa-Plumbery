@@ -8,19 +8,23 @@ import { Phone, CheckCircle, Star, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function HeroSection() {
-  const backgroundImages = ["/tools-materials.jpg", "/pipes.jpg","/plumbery service image.webp","/phone-call-plumbing-service-woman.webp"]
+  const backgroundImages = [
+    "/tools-materials.jpg",
+    "/pipes.jpg",
+    "/plumbery service image.webp",
+  ]
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % backgroundImages.length)
-    }, 5000)
+    }, 3000)
     return () => clearInterval(timer)
   }, [backgroundImages.length])
 
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden">
-      {/* ✅ Background slideshow with <img> instead of bg-cover */}
+      {/* ✅ Background slideshow with proper cover & top focus */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -34,7 +38,7 @@ export function HeroSection() {
             <img
               src={backgroundImages[currentSlide]}
               alt="Plumbing background"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top md:object-center"
             />
           </motion.div>
         </AnimatePresence>
@@ -151,8 +155,9 @@ export function HeroSection() {
           {backgroundImages.map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-white" : "bg-white/40"
-                }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? "bg-white" : "bg-white/40"
+              }`}
               onClick={() => setCurrentSlide(index)}
             />
           ))}
