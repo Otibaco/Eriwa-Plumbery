@@ -84,23 +84,7 @@ export default function ProductsPage() {
       features: ["Durable Steel", "Multiple Sizes", "Ergonomic Grip", "Professional Grade"],
       inStock: true,
     },
-    ...Array.from({ length: 97 }, (_, i) => {
-      const price = (Math.floor(Math.random() * 500) + 50) * 1600
-      const originalPrice = (Math.floor(Math.random() * 200) + 300) * 1600
-      return {
-        id: i + 7,
-        name: `Plumbing Product ${i + 7}`,
-        category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
-        price: price.toLocaleString(),
-        originalPrice: originalPrice.toLocaleString(),
-        rating: Math.floor(Math.random() * 2) + 4,
-        reviews: Math.floor(Math.random() * 300) + 10,
-        image: "/plumbing-product.png",
-        description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
-        features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
-        inStock: Math.random() > 0.1,
-      }
-    }),
+
     {
       id: 4,
       name: "Copper Pipe Fittings Kit",
@@ -295,30 +279,36 @@ export default function ProductsPage() {
       {/* Products Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
+          {/* Heading */}
           <AnimatedSection animation="fadeInUp" className="mb-8">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-bold mb-2">
                   {selectedCategory === "all"
                     ? "All Products"
                     : categories.find((c) => c.id === selectedCategory)?.name}
                 </h2>
-                <p className="text-muted-foreground">
-                  Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredAndSortedProducts.length)} of{" "}
+                <p className="text-muted-foreground text-sm sm:text-base">
+                  Showing {startIndex + 1}-
+                  {Math.min(startIndex + itemsPerPage, filteredAndSortedProducts.length)} of{" "}
                   {filteredAndSortedProducts.length} products
                 </p>
               </div>
             </div>
           </AnimatedSection>
 
+          {/* Products */}
           <div
             className={
-              viewMode === "grid" ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" : "space-y-4"
+              viewMode === "grid"
+                ? "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                : "flex flex-col gap-4"
             }
           >
             {paginatedProducts.map((product, index) => (
               <AnimatedSection key={product.id} animation="fadeInUp" delay={index * 0.05}>
                 <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+                  {/* ✅ Grid View */}
                   {viewMode === "grid" ? (
                     <Card className="h-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
                       <div className="relative">
@@ -328,27 +318,31 @@ export default function ProductsPage() {
                           className="w-full h-48 object-cover"
                         />
                         {product.originalPrice > product.price && (
-                          <Badge className="absolute top-2 left-2 bg-destructive">
+                          <Badge className="absolute top-2 left-2 bg-destructive text-xs sm:text-sm">
                             Save ₦{(product.originalPrice - product.price).toFixed(0)}
                           </Badge>
                         )}
                         {!product.inStock && (
-                          <Badge variant="secondary" className="absolute top-2 right-2">
+                          <Badge variant="secondary" className="absolute top-2 right-2 text-xs sm:text-sm">
                             Out of Stock
                           </Badge>
                         )}
-                        <Badge variant="outline" className="absolute bottom-2 right-2 bg-background/80">
+                        <Badge variant="outline" className="absolute bottom-2 right-2 bg-background/80 text-xs sm:text-sm">
                           {getProductViews(product.id)} views
                         </Badge>
                       </div>
 
                       <CardHeader className="pb-2">
-                        <div className="flex items-start justify-between">
-                          <CardTitle className="text-base line-clamp-2 leading-tight">{product.name}</CardTitle>
-                          <div className="text-right flex-shrink-0 ml-2">
-                            <div className="text-lg font-bold text-primary">₦{product.price}</div>
+                        <div className="flex items-start justify-between gap-2">
+                          <CardTitle className="text-sm sm:text-base line-clamp-2 leading-tight">
+                            {product.name}
+                          </CardTitle>
+                          <div className="text-right flex-shrink-0">
+                            <div className="text-base sm:text-lg font-bold text-primary">₦{product.price}</div>
                             {product.originalPrice > product.price && (
-                              <div className="text-xs text-muted-foreground line-through">₦{product.originalPrice}</div>
+                              <div className="text-xs sm:text-sm text-muted-foreground line-through">
+                                ₦{product.originalPrice}
+                              </div>
                             )}
                           </div>
                         </div>
@@ -358,29 +352,31 @@ export default function ProductsPage() {
                             {[...Array(5)].map((_, i) => (
                               <Star
                                 key={i}
-                                className={`w-3 h-3 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                                className={`w-3 h-3 sm:w-4 sm:h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
                                   }`}
                               />
                             ))}
                           </div>
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs sm:text-sm text-muted-foreground">
                             {product.rating} ({product.reviews})
                           </span>
                         </div>
                       </CardHeader>
 
                       <CardContent className="pt-0">
-                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2">
+                          {product.description}
+                        </p>
 
-                        <div className="flex gap-2">
-                          <Button size="sm" className="flex-1 text-xs" disabled={!product.inStock}>
+                        <div className="flex gap-2 flex-col sm:flex-row">
+                          <Button size="sm" className="flex-1 text-xs sm:text-sm" disabled={!product.inStock}>
                             <ShoppingCart className="w-3 h-3 mr-1" />
                             {product.inStock ? "Buy now" : "Out of Stock"}
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
-                            className="bg-transparent text-xs"
+                            className="bg-transparent text-xs sm:text-sm"
                             onClick={() => handleProductView(product)}
                           >
                             View
@@ -389,49 +385,50 @@ export default function ProductsPage() {
                       </CardContent>
                     </Card>
                   ) : (
+                    /* ✅ List View */
                     <Card className="shadow-lg hover:shadow-xl transition-shadow">
                       <CardContent className="p-4">
-                        <div className="flex gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4">
                           <img
                             src={product.image || "/placeholder.svg?height=120&width=120&query=plumbing+product"}
                             alt={product.name}
-                            className="w-24 h-24 object-cover rounded flex-shrink-0"
+                            className="w-full sm:w-24 sm:h-24 h-40 object-cover rounded flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between mb-2">
-                              <h3 className="font-semibold text-lg line-clamp-1">{product.name}</h3>
-                              <div className="text-right flex-shrink-0 ml-4">
-                                <div className="text-xl font-bold text-primary">₦{product.price}</div>
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
+                              <h3 className="font-semibold text-base sm:text-lg line-clamp-1">{product.name}</h3>
+                              <div className="text-right flex-shrink-0">
+                                <div className="text-lg sm:text-xl font-bold text-primary">₦{product.price}</div>
                                 {product.originalPrice > product.price && (
-                                  <div className="text-sm text-muted-foreground line-through">
-                                    ${product.originalPrice}
+                                  <div className="text-xs sm:text-sm text-muted-foreground line-through">
+                                    ₦{product.originalPrice}
                                   </div>
                                 )}
                               </div>
                             </div>
 
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
                               <div className="flex">
                                 {[...Array(5)].map((_, i) => (
                                   <Star
                                     key={i}
-                                    className={`w-4 h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
+                                    className={`w-3 h-3 sm:w-4 sm:h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
                                       }`}
                                   />
                                 ))}
                               </div>
-                              <span className="text-sm text-muted-foreground">
+                              <span className="text-xs sm:text-sm text-muted-foreground">
                                 {product.rating} ({product.reviews} reviews)
                               </span>
-                              <Badge variant="outline" className="ml-auto">
+                              <Badge variant="outline" className="ml-auto text-xs sm:text-sm">
                                 {getProductViews(product.id)} views
                               </Badge>
                             </div>
 
-                            <p className="text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
+                            <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
 
-                            <div className="flex items-center justify-between">
-                              <div className="flex gap-2">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                              <div className="flex gap-2 flex-wrap">
                                 {product.features.slice(0, 2).map((feature, idx) => (
                                   <Badge key={idx} variant="secondary" className="text-xs">
                                     {feature}
@@ -458,6 +455,7 @@ export default function ProductsPage() {
             ))}
           </div>
 
+          {/* No Products */}
           {filteredAndSortedProducts.length === 0 && (
             <AnimatedSection animation="fadeInUp" className="text-center py-12">
               <div className="text-muted-foreground">
@@ -468,9 +466,10 @@ export default function ProductsPage() {
             </AnimatedSection>
           )}
 
+          {/* Pagination */}
           {totalPages > 1 && (
             <AnimatedSection animation="fadeInUp" className="mt-12">
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-center justify-center gap-2 flex-wrap">
                 <Button
                   variant="outline"
                   size="sm"
@@ -481,7 +480,7 @@ export default function ProductsPage() {
                   Previous
                 </Button>
 
-                <div className="flex gap-1">
+                <div className="flex gap-1 flex-wrap">
                   {Array.from({ length: Math.min(7, totalPages) }, (_, i) => {
                     let pageNum
                     if (totalPages <= 7) {
@@ -526,6 +525,7 @@ export default function ProductsPage() {
           )}
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
