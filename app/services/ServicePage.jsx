@@ -96,7 +96,7 @@ export default function ServicesPage() {
                   variant="outline"
                   className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
                 >
-                  Get Free Quote
+                  Shop now
                 </Button>
               </motion.div>
             </div>
@@ -218,7 +218,7 @@ export default function ServicesPage() {
                         ))}
                       </ul>
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Button className="w-full">Get Quote</Button>
+                        <Button className="w-full">GetShop now</Button>
                       </motion.div>
                     </CardContent>
                   </Card>
@@ -280,7 +280,7 @@ export default function ServicesPage() {
           <AnimatedSection animation="fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to Get Started?</h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto text-pretty">
-              Contact us today for a free consultation, quote, or to purchase parts and plumbing products from our store.
+              Contact us today for a free consultation,Shop now, or to purchase parts and plumbing products from our store.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

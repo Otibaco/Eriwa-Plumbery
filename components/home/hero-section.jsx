@@ -96,7 +96,7 @@ export function HeroSection() {
                 variant="outline"
                 className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent"
               >
-                Get Free Quote
+                Shop now
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </motion.div>

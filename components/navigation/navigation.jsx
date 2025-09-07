@@ -59,7 +59,7 @@ export function Navigation() {
               <span className="xl:hidden">Call</span>
             </Button>
             <Button size="sm" className="text-xs xl:text-sm">
-              Get Quote
+              Shop now
             </Button>
           </div>
 
@@ -147,7 +147,7 @@ export function Navigation() {
                           (+234) 703 132 0510
                         </Button>
                         <Button className="w-full h-12 text-base">
-                          Get Free Quote
+                          Shop now
                         </Button>
                       </div>
                     </div>

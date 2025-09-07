@@ -342,7 +342,7 @@ export default function AboutPage() {
                   variant="outline"
                   className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
                 >
-                  Get Free Quote
+                  Shop now
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </motion.div>

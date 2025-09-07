@@ -18,7 +18,7 @@ export function CTASection() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to Solve Your Plumbing Problems?</h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto text-pretty">
-              Contact us today for a free consultation and quote. Our expert team is ready to help with all your
+              Contact us today for a free consultation andShop now. Our expert team is ready to help with all your
               plumbing needs.
             </p>
 

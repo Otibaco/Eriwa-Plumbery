@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { Star, Quote } from "lucide-react"
+import { Star,Quote } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function TestimonialsSection() {
