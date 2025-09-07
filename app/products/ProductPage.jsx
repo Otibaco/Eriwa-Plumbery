@@ -194,37 +194,42 @@ export default function ProductsPage() {
       <section className="py-8 bg-muted">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
-              <div className="relative flex-1 max-w-md">
+            {/* 🔎 Search + Categories */}
+            <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between mb-6">
+              {/* Search Input */}
+              <div className="relative flex-1 max-w-md w-full">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 w-full"
                 />
               </div>
 
-              <div className="flex gap-2 flex-wrap">
+              {/* Categories */}
+              <div className="flex gap-2 flex-wrap justify-center lg:justify-end w-full lg:w-auto">
                 {categories.map((category) => (
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? "default" : "outline"}
                     size="sm"
                     onClick={() => handleCategoryChange(category.id)}
-                    className="bg-transparent"
+                    className="bg-transparent flex items-center"
                   >
                     <category.icon className="w-4 h-4 mr-2" />
-                    {category.name}
+                    <span className="text-sm">{category.name}</span>
                   </Button>
                 ))}
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-              <div className="flex items-center gap-4">
+            {/* 🔽 Sorting + View Toggle */}
+            <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
+              {/* Sort & Items Per Page */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-full sm:w-48">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
@@ -243,7 +248,7 @@ export default function ProductsPage() {
                     setCurrentPage(1)
                   }}
                 >
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-full sm:w-32">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -255,7 +260,8 @@ export default function ProductsPage() {
                 </Select>
               </div>
 
-              <div className="flex items-center gap-2">
+              {/* Grid/List Toggle */}
+              <div className="flex items-center gap-2 justify-center sm:justify-end w-full sm:w-auto">
                 <Button
                   variant={viewMode === "grid" ? "default" : "outline"}
                   size="sm"
@@ -275,6 +281,7 @@ export default function ProductsPage() {
           </AnimatedSection>
         </div>
       </section>
+
 
       {/* Products Section */}
       <section className="py-20">
