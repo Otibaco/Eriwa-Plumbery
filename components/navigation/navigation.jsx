@@ -10,8 +10,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
-import { Menu, Phone, Wrench } from "lucide-react"
+import { Menu, X, Phone, Wrench } from "lucide-react"
 import { ThemeToggle } from "../ui/theme-toggle"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -72,61 +73,90 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 lg:hidden relative z-50">
+            {/* Theme toggle still visible */}
             <div className="md:hidden">
               <ThemeToggle />
             </div>
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Menu className="w-5 h-5" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-sm">
-                {/* Accessibility header */}
-                <SheetHeader>
-                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                </SheetHeader>
 
-                <div className="flex flex-col gap-8 mt-8">
-                  {/* Logo + ThemeToggle inside drawer */}
-                  <div className="flex items-center justify-between pl-4 pr-2">
-                    <div className="flex items-center gap-2 font-bold text-xl">
-                      <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full">
-                        <Wrench className="w-4 h-4 text-primary-foreground" />
+            {/* Menu Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="p-2"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+
+            {/* AnimatePresence for dropdown */}
+            <AnimatePresence>
+              {isOpen && (
+                <>
+                  {/* 🔹 Backdrop Overlay */}
+                  <motion.div
+                    className="fixed inset-0 bg-black/40 z-40"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setIsOpen(false)} // close when clicking outside
+                  />
+
+                  {/* 🔹 Dropdown Drawer */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute top-12 right-0 w-[90vw] max-w-sm bg-background border rounded-2xl shadow-xl z-50"
+                  >
+                    <div className="flex flex-col gap-6 p-6">
+                      {/* Logo + ThemeToggle */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 font-bold text-xl">
+                          <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-full">
+                            <Wrench className="w-4 h-4 text-primary-foreground" />
+                          </div>
+                          <span className="text-primary">Eriwa Plumbery</span>
+                        </div>
+                        <ThemeToggle />
                       </div>
-                      <span className="text-primary">Eriwa Plumbery</span>
+
+                      {/* Nav Links */}
+                      <nav className="flex flex-col gap-4">
+                        {navItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                            onClick={() => setIsOpen(false)} // close when clicking a link
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </nav>
+
+                      {/* CTA Buttons */}
+                      <div className="flex flex-col gap-3">
+                        <Button
+                          variant="outline"
+                          className="w-full h-12 text-base bg-transparent"
+                        >
+                          <Phone className="w-4 h-4 mr-2" />
+                          (+234) 703 132 0510
+                        </Button>
+                        <Button className="w-full h-12 text-base">
+                          Get Free Quote
+                        </Button>
+                      </div>
                     </div>
-                    <ThemeToggle />
-                  </div>
-
-                  {/* Links with margin-left */}
-                  <nav className="flex flex-col gap-6 ml-4">
-                    {navItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="text-lg font-medium hover:text-primary transition-colors py-2"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </nav>
-
-                  {/* CTA buttons spaced */}
-                  <div className="flex flex-col gap-4 mt-4 px-4">
-                    <Button variant="outline" className="w-full h-12 text-base bg-transparent">
-                      <Phone className="w-4 h-4 mr-2" />
-                      (+234) 703 132 0510
-                    </Button>
-                    <Button className="w-full h-12 text-base">Get Free Quote</Button>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
           </div>
+
         </div>
       </div>
     </nav>
