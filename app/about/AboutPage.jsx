@@ -120,8 +120,11 @@ export default function AboutPage() {
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-primary bg-transparent w-full sm:w-auto"
                 >
-                  Our Services
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <Link href="/services" className="flex items-center">
+                    Our Services
+                    <ArrowRight className="w-5 h-5 ml-2" />
+
+                  </Link>
                 </Button>
               </div>
             </AnimatedSection>
