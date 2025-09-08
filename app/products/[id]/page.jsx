@@ -48,10 +48,10 @@ const getProductById = (id) => {
             rating: 4.8,
             reviews: 124,
             images: [
-                "/kitchen-faucet-main.jpg",
-                "/kitchen-faucet-side-view.jpg",
-                "/kitchen-faucet-installation.jpg",
-                "/kitchen-faucet-parts.jpg",
+                "/Premium Kitchen Faucet.jpg",
+                "/Premium Kitchen Faucet.jpg",
+                "/Premium Kitchen Faucet.jpg",
+                "/Premium Kitchen Faucet.jpg",
             ],
             shortDescription:
                 "High-quality stainless steel kitchen faucet with pull-down sprayer and ceramic disc valves for long-lasting performance.",
@@ -90,10 +90,10 @@ const getProductById = (id) => {
             rating: 4.9,
             reviews: 89,
             images: [
-                "/tankless-water-heater-main.png",
-                "/tankless-water-heater-installation.png",
-                "/water-heater-controls.jpg",
-                "/water-heater-parts.jpg",
+                "/Tankless Water Heater.jpg",
+                "/fix1.jpg",
+                "/shower1.jpg",
+                "/Tankless Water Heater.jpg",
             ],
             shortDescription:
                 "Energy-efficient tankless water heater providing endless hot water on demand with digital temperature control.",
@@ -137,7 +137,7 @@ const getRelatedProducts = (relatedIds) => {
             originalPrice: "191,984",
             rating: 4.7,
             reviews: 203,
-            image: "/pipe-wrench-set.jpg",
+            image: "/shower1.jpg",
             description: "Complete set of professional-grade pipe wrenches for all plumbing needs.",
             inStock: true,
         },
@@ -148,7 +148,7 @@ const getRelatedProducts = (relatedIds) => {
             originalPrice: "95,984",
             rating: 4.6,
             reviews: 156,
-            image: "/copper-fittings.jpg",
+            image: "/shower2.jpg",
             description: "Comprehensive kit of copper pipe fittings and connectors.",
             inStock: true,
         },
@@ -159,7 +159,7 @@ const getRelatedProducts = (relatedIds) => {
             originalPrice: "399,984",
             rating: 4.8,
             reviews: 92,
-            image: "/bathroom-sink.jpg",
+            image: "/shower3.jpg",
             description: "Elegant ceramic bathroom sink with contemporary design.",
             inStock: false,
         },
@@ -170,11 +170,11 @@ const getRelatedProducts = (relatedIds) => {
             originalPrice: "159,984",
             rating: 4.9,
             reviews: 267,
-            image: "/shower-head.jpg",
+            image: "/High-Pressure Shower Head.jpg",
             description: "High-pressure shower head with multiple spray settings.",
             inStock: true,
         },
-    ]
+    ] 
 
     return allProducts.filter((p) => relatedIds?.includes(p.id)) || allProducts.slice(0, 4)
 }
