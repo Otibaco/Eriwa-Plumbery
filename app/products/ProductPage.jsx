@@ -108,23 +108,23 @@ export default function ProductsPage() {
       features: ["High Pressure", "Multiple Settings", "Chrome Finish", "Water Saving"],
       inStock: true,
     },
-    // ...Array.from({ length: 97 }, (_, i) => {
-    //   const price = (Math.floor(Math.random() * 500) + 50) * 1600
-    //   const originalPrice = (Math.floor(Math.random() * 200) + 300) * 1600
-    //   return {
-    //     id: i + 7,
-    //     name: `Plumbing Product ${i + 7}`,
-    //     category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
-    //     price: price.toLocaleString(),
-    //     originalPrice: originalPrice.toLocaleString(),
-    //     rating: Math.floor(Math.random() * 2) + 4,
-    //     reviews: Math.floor(Math.random() * 300) + 10,
-    //     image: "/plumbing-product.png",
-    //     description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
-    //     features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
-    //     inStock: Math.random() > 0.1,
-    //   }
-    // }),
+    ...Array.from({ length: 97 }, (_, i) => {
+      const price = (Math.floor(Math.random() * 500) + 50) * 1600
+      const originalPrice = (Math.floor(Math.random() * 200) + 300) * 1600
+      return {
+        id: i + 7,
+        name: `Plumbing Product ${i + 7}`,
+        category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
+        price: price.toLocaleString(),
+        originalPrice: originalPrice.toLocaleString(),
+        rating: Math.floor(Math.random() * 2) + 4,
+        reviews: Math.floor(Math.random() * 300) + 10,
+        image: "/toilet1.jpg",
+        description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
+        features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
+        inStock: Math.random() > 0.1,
+      }
+    }),
   ]
 
   const filteredAndSortedProducts = useMemo(() => {

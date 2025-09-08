@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Phone, CheckCircle, Star, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 export function HeroSection() {
   const backgroundImages = [
@@ -96,8 +97,10 @@ export function HeroSection() {
                 variant="outline"
                 className="text-lg px-8 border-white text-white hover:bg-white hover:text-primary bg-transparent"
               >
-                Shop now
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <Link href="/products" className="flex items-center">
+                  Shop now
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
               </Button>
             </motion.div>
 

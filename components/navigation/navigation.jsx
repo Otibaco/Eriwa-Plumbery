@@ -59,7 +59,9 @@ export function Navigation() {
               <span className="xl:hidden">Call</span>
             </Button>
             <Button size="sm" className="text-xs xl:text-sm">
-              Shop now
+              <Link href="/products" className="flex items-center">
+                Shop now
+              </Link>
             </Button>
           </div>
 
