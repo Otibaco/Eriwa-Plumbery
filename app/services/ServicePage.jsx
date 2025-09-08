@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer/footer"
 import { WhatsAppWidget } from "@/components/whatsapp-widget/whatsapp-widget"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function ServicesPage() {
   const repairServices = [
@@ -96,7 +97,9 @@ export default function ServicesPage() {
                   variant="outline"
                   className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
                 >
-                  Shop now
+                  <Link href="/products" className="flex items-center">
+                    Shop now
+                  </Link>
                 </Button>
               </motion.div>
             </div>
