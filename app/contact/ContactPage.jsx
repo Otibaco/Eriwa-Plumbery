@@ -52,13 +52,13 @@ export default function ContactPage() {
                           <label htmlFor="firstName" className="block text-sm font-medium mb-2">
                             First Name
                           </label>
-                          <Input id="firstName" placeholder="John" required />
+                          <Input id="firstName" placeholder="Olisa" required />
                         </div>
                         <div>
                           <label htmlFor="lastName" className="block text-sm font-medium mb-2">
                             Last Name
                           </label>
-                          <Input id="lastName" placeholder="Doe" required />
+                          <Input id="lastName" placeholder="Emeka" required />
                         </div>
                       </div>
 
@@ -66,14 +66,14 @@ export default function ContactPage() {
                         <label htmlFor="email" className="block text-sm font-medium mb-2">
                           Email
                         </label>
-                        <Input id="email" type="email" placeholder="john@example.com" required />
+                        <Input id="email" type="email" placeholder="olisa@example.com" required />
                       </div>
 
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium mb-2">
                           Phone Number
                         </label>
-                        <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
+                        <Input id="phone" type="tel" placeholder="(+234) 703 132 0510" />
                       </div>
 
                       <div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <h4 className="font-semibold mb-1">Phone</h4>
-                            <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                            <p className="text-muted-foreground">+234 703 132 0510</p>
                             <p className="text-sm text-muted-foreground">24/7 Emergency Service</p>
                           </div>
                         </motion.div>
@@ -142,9 +142,17 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <h4 className="font-semibold mb-1">Address</h4>
-                            <p className="text-muted-foreground">123 Plumber Street</p>
-                            <p className="text-muted-foreground">City, State 12345</p>
+                            <p className="text-muted-foreground font-medium">
+                              BUILDING MATERIALS INTERNATIONAL MARKET, OGIDI
+                            </p>
+                            <p className="text-muted-foreground">
+                             Building materials market
+                            </p>
+                            <p className="text-muted-foreground">
+                              Enugu-Onitsha Expressway, Off Ugwu Nwasike, Ogbunike
+                            </p>
                           </div>
+
                         </motion.div>
 
                         <motion.div
