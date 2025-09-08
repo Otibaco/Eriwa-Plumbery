@@ -146,7 +146,7 @@ export default function ContactPage() {
                               BUILDING MATERIALS INTERNATIONAL MARKET, OGIDI
                             </p>
                             <p className="text-muted-foreground">
-                             Building materials market
+                              Building materials market
                             </p>
                             <p className="text-muted-foreground">
                               Enugu-Onitsha Expressway, Off Ugwu Nwasike, Ogbunike
@@ -207,20 +207,28 @@ export default function ContactPage() {
                   <CardContent className="p-0">
                     <div className="w-full h-96 rounded-lg overflow-hidden">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567890123!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMjEuNCJX!5e0!3m2!1sen!2sus!4v1234567890123"
+                        src="https://www.google.com/maps?q=Building+Materials+International+Market,+Ogidi&hl=en&z=15&output=embed"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Eriwa Plumbery Location"
+                        title="Building Materials International Market Location"
                       />
                     </div>
                     <div className="p-6 bg-muted">
                       <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4" />
-                        <span>123 Plumber Street, City, State 12345</span>
+                        <MapPin className="w-4 h-4 text-red-500" />
+                        <a
+                          href="https://www.google.com/maps/place/Building+Materials+International+Market,+Ogidi/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline"
+                        >
+                          BUILDING MATERIALS INTERNATIONAL MARKET, OGIDI – Enugu-Onitsha
+                          Expressway, Off Ugwu Nwasike, Ogbunike
+                        </a>
                       </div>
                     </div>
                   </CardContent>
@@ -228,6 +236,8 @@ export default function ContactPage() {
               </motion.div>
             </div>
           </AnimatedSection>
+
+
         </div>
       </section>
 
