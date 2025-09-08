@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
@@ -10,28 +9,14 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { Navigation } from "@/components/navigation/navigation"
 import { Footer } from "@/components/footer/footer"
 import { WhatsAppWidget } from "@/components/whatsapp-widget/whatsapp-widget"
-import {
-  Search,
-  Filter,
-  ShoppingCart,
-  Star,
-  Wrench,
-  Droplets,
-  Zap,
-  Home,
-  ChevronLeft,
-  ChevronRight,
-  Grid3X3,
-  List,
-} from "lucide-react"
-import { motion } from "framer-motion"
+import { ProductCard } from "@/components/products/ProductCard"
+import { Search, Filter, ChevronDown, Grid3X3, List, Home, Wrench, Droplets, Zap } from "lucide-react"
 import { useAnalytics } from "@/lib/analytics"
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(12)
+  const [itemsToShow, setItemsToShow] = useState(12)
   const [sortBy, setSortBy] = useState("name")
   const [viewMode, setViewMode] = useState("grid")
   const { trackProductView, getProductViews } = useAnalytics()
@@ -84,7 +69,6 @@ export default function ProductsPage() {
       features: ["Durable Steel", "Multiple Sizes", "Ergonomic Grip", "Professional Grade"],
       inStock: true,
     },
-
     {
       id: 4,
       name: "Copper Pipe Fittings Kit",
@@ -124,9 +108,24 @@ export default function ProductsPage() {
       features: ["High Pressure", "Multiple Settings", "Chrome Finish", "Water Saving"],
       inStock: true,
     },
+    // ...Array.from({ length: 97 }, (_, i) => {
+    //   const price = (Math.floor(Math.random() * 500) + 50) * 1600
+    //   const originalPrice = (Math.floor(Math.random() * 200) + 300) * 1600
+    //   return {
+    //     id: i + 7,
+    //     name: `Plumbing Product ${i + 7}`,
+    //     category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1].id,
+    //     price: price.toLocaleString(),
+    //     originalPrice: originalPrice.toLocaleString(),
+    //     rating: Math.floor(Math.random() * 2) + 4,
+    //     reviews: Math.floor(Math.random() * 300) + 10,
+    //     image: "/plumbing-product.png",
+    //     description: `Professional plumbing product for various installation and repair needs. Product ${i + 7}.`,
+    //     features: ["Professional Grade", "Durable Material", "Easy Installation", "Warranty Included"],
+    //     inStock: Math.random() > 0.1,
+    //   }
+    // }),
   ]
-
-
 
   const filteredAndSortedProducts = useMemo(() => {
     const filtered = products.filter((product) => {
@@ -138,9 +137,9 @@ export default function ProductsPage() {
     filtered.sort((a, b) => {
       switch (sortBy) {
         case "price-low":
-          return a.price - b.price
+          return Number.parseInt(a.price.replace(/,/g, "")) - Number.parseInt(b.price.replace(/,/g, ""))
         case "price-high":
-          return b.price - a.price
+          return Number.parseInt(b.price.replace(/,/g, "")) - Number.parseInt(a.price.replace(/,/g, ""))
         case "rating":
           return b.rating - a.rating
         case "reviews":
@@ -153,9 +152,8 @@ export default function ProductsPage() {
     return filtered
   }, [selectedCategory, searchTerm, sortBy])
 
-  const totalPages = Math.ceil(filteredAndSortedProducts.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const paginatedProducts = filteredAndSortedProducts.slice(startIndex, startIndex + itemsPerPage)
+  const displayedProducts = filteredAndSortedProducts.slice(0, itemsToShow)
+  const hasMore = itemsToShow < filteredAndSortedProducts.length
 
   const handleProductView = (product) => {
     trackProductView(product.id, product.name, product.category)
@@ -163,12 +161,16 @@ export default function ProductsPage() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category)
-    setCurrentPage(1)
+    setItemsToShow(12)
   }
 
   const handleSearchChange = (value) => {
     setSearchTerm(value)
-    setCurrentPage(1)
+    setItemsToShow(12)
+  }
+
+  const loadMore = () => {
+    setItemsToShow((prev) => prev + 12)
   }
 
   return (
@@ -194,9 +196,8 @@ export default function ProductsPage() {
       <section className="py-8 bg-muted">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            {/* 🔎 Search + Categories */}
+            {/* Search + Categories */}
             <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between mb-6">
-              {/* Search Input */}
               <div className="relative flex-1 max-w-md w-full">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
@@ -207,17 +208,17 @@ export default function ProductsPage() {
                 />
               </div>
 
-              {/* Categories */}
               <div className="flex gap-2 flex-wrap justify-center lg:justify-end w-full lg:w-auto">
                 {categories.map((category) => (
                   <Button
                     key={category.id}
                     size="sm"
                     onClick={() => handleCategoryChange(category.id)}
-                    className={`flex items-center ${selectedCategory === category.id
-                        ? "bg-background text-foreground shadow-sm border" // ✅ active button matches theme
+                    className={`flex items-center ${
+                      selectedCategory === category.id
+                        ? "bg-background text-foreground shadow-sm border"
                         : "bg-transparent"
-                      }`}
+                    }`}
                     variant="outline"
                   >
                     <category.icon className="w-4 h-4 mr-2" />
@@ -227,9 +228,8 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* 🔽 Sorting + View Toggle */}
+            {/* Sorting + View Toggle */}
             <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
-              {/* Sort & Items Per Page */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="w-full sm:w-48">
@@ -243,27 +243,8 @@ export default function ProductsPage() {
                     <SelectItem value="reviews">Most Reviews</SelectItem>
                   </SelectContent>
                 </Select>
-
-                <Select
-                  value={itemsPerPage.toString()}
-                  onValueChange={(value) => {
-                    setItemsPerPage(Number(value))
-                    setCurrentPage(1)
-                  }}
-                >
-                  <SelectTrigger className="w-full sm:w-32">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="12">12 per page</SelectItem>
-                    <SelectItem value="24">24 per page</SelectItem>
-                    <SelectItem value="48">48 per page</SelectItem>
-                    <SelectItem value="96">96 per page</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
 
-              {/* Grid/List Toggle */}
               <div className="flex items-center gap-2 justify-center sm:justify-end w-full sm:w-auto">
                 <Button
                   variant={viewMode === "grid" ? "default" : "outline"}
@@ -285,12 +266,9 @@ export default function ProductsPage() {
         </div>
       </section>
 
-
-
       {/* Products Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          {/* Heading */}
           <AnimatedSection animation="fadeInUp" className="mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
@@ -300,15 +278,13 @@ export default function ProductsPage() {
                     : categories.find((c) => c.id === selectedCategory)?.name}
                 </h2>
                 <p className="text-muted-foreground text-sm sm:text-base">
-                  Showing {startIndex + 1}-
-                  {Math.min(startIndex + itemsPerPage, filteredAndSortedProducts.length)} of{" "}
-                  {filteredAndSortedProducts.length} products
+                  Showing {displayedProducts.length} of {filteredAndSortedProducts.length} products
                 </p>
               </div>
             </div>
           </AnimatedSection>
 
-          {/* Products */}
+          {/* Products Grid/List */}
           <div
             className={
               viewMode === "grid"
@@ -316,152 +292,9 @@ export default function ProductsPage() {
                 : "flex flex-col gap-4"
             }
           >
-            {paginatedProducts.map((product, index) => (
+            {displayedProducts.map((product, index) => (
               <AnimatedSection key={product.id} animation="fadeInUp" delay={index * 0.05}>
-                <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
-                  {/* ✅ Grid View */}
-                  {viewMode === "grid" ? (
-                    <Card className="h-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-                      <div className="relative">
-                        <img
-                          src={product.image || "/placeholder.svg?height=200&width=300&query=plumbing+product"}
-                          alt={product.name}
-                          className="w-full h-48 object-cover"
-                        />
-                        {product.originalPrice > product.price && (
-                          <Badge className="absolute top-2 left-2 bg-destructive text-xs sm:text-sm">
-                            Save ₦{(product.originalPrice - product.price).toFixed(0)}
-                          </Badge>
-                        )}
-                        {!product.inStock && (
-                          <Badge variant="secondary" className="absolute top-2 right-2 text-xs sm:text-sm">
-                            Out of Stock
-                          </Badge>
-                        )}
-                        <Badge variant="outline" className="absolute bottom-2 right-2 bg-background/80 text-xs sm:text-sm">
-                          {getProductViews(product.id)} views
-                        </Badge>
-                      </div>
-
-                      <CardHeader className="pb-2">
-                        <div className="flex items-start justify-between gap-2">
-                          <CardTitle className="text-sm sm:text-base line-clamp-2 leading-tight">
-                            {product.name}
-                          </CardTitle>
-                          <div className="text-right flex-shrink-0">
-                            <div className="text-base sm:text-lg font-bold text-primary">₦{product.price}</div>
-                            {product.originalPrice > product.price && (
-                              <div className="text-xs sm:text-sm text-muted-foreground line-through">
-                                ₦{product.originalPrice}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-1">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`w-3 h-3 sm:w-4 sm:h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                                  }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-xs sm:text-sm text-muted-foreground">
-                            {product.rating} ({product.reviews})
-                          </span>
-                        </div>
-                      </CardHeader>
-
-                      <CardContent className="pt-0">
-                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2">
-                          {product.description}
-                        </p>
-
-                        <div className="flex gap-2 flex-col sm:flex-row">
-                          <Button size="sm" className="flex-1 text-xs sm:text-sm" disabled={!product.inStock}>
-                            <ShoppingCart className="w-3 h-3 mr-1" />
-                            {product.inStock ? "Buy now" : "Out of Stock"}
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="bg-transparent text-xs sm:text-sm"
-                            onClick={() => handleProductView(product)}
-                          >
-                            View
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ) : (
-                    /* ✅ List View */
-                    <Card className="shadow-lg hover:shadow-xl transition-shadow">
-                      <CardContent className="p-4">
-                        <div className="flex flex-col sm:flex-row gap-4">
-                          <img
-                            src={product.image || "/placeholder.svg?height=120&width=120&query=plumbing+product"}
-                            alt={product.name}
-                            className="w-full sm:w-24 sm:h-24 h-40 object-cover rounded flex-shrink-0"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
-                              <h3 className="font-semibold text-base sm:text-lg line-clamp-1">{product.name}</h3>
-                              <div className="text-right flex-shrink-0">
-                                <div className="text-lg sm:text-xl font-bold text-primary">₦{product.price}</div>
-                                {product.originalPrice > product.price && (
-                                  <div className="text-xs sm:text-sm text-muted-foreground line-through">
-                                    ₦{product.originalPrice}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <div className="flex">
-                                {[...Array(5)].map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`w-3 h-3 sm:w-4 sm:h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
-                                      }`}
-                                  />
-                                ))}
-                              </div>
-                              <span className="text-xs sm:text-sm text-muted-foreground">
-                                {product.rating} ({product.reviews} reviews)
-                              </span>
-                              <Badge variant="outline" className="ml-auto text-xs sm:text-sm">
-                                {getProductViews(product.id)} views
-                              </Badge>
-                            </div>
-
-                            <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
-
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                              <div className="flex gap-2 flex-wrap">
-                                {product.features.slice(0, 2).map((feature, idx) => (
-                                  <Badge key={idx} variant="secondary" className="text-xs">
-                                    {feature}
-                                  </Badge>
-                                ))}
-                              </div>
-                              <div className="flex gap-2">
-                                <Button size="sm" disabled={!product.inStock}>
-                                  <ShoppingCart className="w-4 h-4 mr-2" />
-                                  {product.inStock ? "Buy now" : "Out of Stock"}
-                                </Button>
-                                <Button variant="outline" size="sm" onClick={() => handleProductView(product)}>
-                                  View Details
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )}
-                </motion.div>
+                <ProductCard product={product} viewMode={viewMode} onView={handleProductView} />
               </AnimatedSection>
             ))}
           </div>
@@ -477,69 +310,28 @@ export default function ProductsPage() {
             </AnimatedSection>
           )}
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <AnimatedSection animation="fadeInUp" className="mt-12">
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  Previous
-                </Button>
-
-                <div className="flex gap-1 flex-wrap">
-                  {Array.from({ length: Math.min(7, totalPages) }, (_, i) => {
-                    let pageNum
-                    if (totalPages <= 7) {
-                      pageNum = i + 1
-                    } else if (currentPage <= 4) {
-                      pageNum = i + 1
-                    } else if (currentPage >= totalPages - 3) {
-                      pageNum = totalPages - 6 + i
-                    } else {
-                      pageNum = currentPage - 3 + i
-                    }
-
-                    return (
-                      <Button
-                        key={pageNum}
-                        variant={currentPage === pageNum ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setCurrentPage(pageNum)}
-                        className="w-10"
-                      >
-                        {pageNum}
-                      </Button>
-                    )
-                  })}
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                >
-                  Next
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="text-center mt-4 text-sm text-muted-foreground">
-                Page {currentPage} of {totalPages} ({filteredAndSortedProducts.length} total products)
-              </div>
+          {/* View More Button */}
+          {hasMore && (
+            <AnimatedSection animation="fadeInUp" className="mt-12 text-center">
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={loadMore}
+                className="px-8 py-3 text-lg rounded-full bg-transparent"
+              >
+                View More Products
+                <ChevronDown className="w-5 h-5 ml-2" />
+              </Button>
+              <p className="text-sm text-muted-foreground mt-2">
+                {filteredAndSortedProducts.length - itemsToShow} more products available
+              </p>
             </AnimatedSection>
           )}
         </div>
       </section>
 
-
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection animation="fadeInUp">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Need Professional Installation?</h2>
@@ -555,12 +347,12 @@ export default function ProductsPage() {
                 variant="outline"
                 className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
               >
-               Shop now
+                Shop Now
               </Button>
             </div>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
       <WhatsAppWidget />
