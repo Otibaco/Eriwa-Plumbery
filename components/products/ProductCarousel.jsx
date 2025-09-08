@@ -72,15 +72,15 @@ export function ProductCarousel({ images, productName }) {
 
 
                 {/* Zoom Icon */}
-<div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-  <div
-    className="bg-background/90 text-foreground shadow-md 
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div
+                        className="bg-background/90 text-foreground shadow-md 
                hover:bg-accent hover:text-accent-foreground
                rounded-full p-2 transition-all duration-300"
-  >
-    <ZoomIn className="w-4 h-4" />
-  </div>
-</div>
+                    >
+                        <ZoomIn className="w-4 h-4" />
+                    </div>
+                </div>
 
 
                 {/* Image Counter */}

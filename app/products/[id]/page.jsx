@@ -207,7 +207,7 @@ export default function ProductPage() {
 
     const handleWhatsAppInquiry = () => {
         const message = `Hi! I'm interested in the ${product.name} (₦${product.price}). Can you provide more information?`
-        const whatsappUrl = `https://wa.me/2349169307673?text=${encodeURIComponent(message)}`
+        const whatsappUrl = `https://wa.me/2349150462104?text=${encodeURIComponent(message)}`
         window.open(whatsappUrl, "_blank")
     }
 
