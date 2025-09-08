@@ -21,6 +21,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function AboutPage() {
   const stats = [
@@ -86,29 +87,38 @@ export default function AboutPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20">
+      <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16 sm:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left Content */}
             <AnimatedSection animation="fadeInLeft">
-              <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">
+              <Badge
+                variant="secondary"
+                className="mb-4 bg-white/20 text-white border-white/30 text-sm sm:text-base"
+              >
                 About Eriwa Plumbery
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
                 Your Trusted Plumbing Experts Since 2009
               </h1>
-              <p className="text-xl text-primary-foreground/90 mb-8 text-pretty">
-                We're a family-owned plumbing business dedicated to providing exceptional service, quality workmanship,
-                and reliable solutions for all your plumbing needs.
+              <p className="text-base sm:text-lg md:text-xl text-primary-foreground/90 mb-8">
+                We're a family-owned plumbing business dedicated to providing
+                exceptional service, quality workmanship, and reliable solutions for
+                all your plumbing needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="bg-white text-primary hover:bg-gray-100 w-full sm:w-auto"
+                >
                   <Phone className="w-5 h-5 mr-2" />
                   Call (+234) 703 132 0510
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+                  className="border-white text-white hover:bg-white hover:text-primary bg-transparent w-full sm:w-auto"
                 >
                   Our Services
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -116,22 +126,27 @@ export default function AboutPage() {
               </div>
             </AnimatedSection>
 
+            {/* Right Image */}
             <AnimatedSection animation="fadeInRight" delay={0.3}>
-              <div className="relative">
+              <div className="relative w-full max-w-md mx-auto lg:max-w-none">
                 <img
-                  src="/professional-plumbing-team-at-work.png"
+                  src="/Team story.jpg"
                   alt="Professional plumbing team"
-                  className="rounded-lg shadow-2xl"
+                  className="rounded-lg shadow-2xl w-full h-auto"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-white text-primary p-6 rounded-lg shadow-xl">
-                  <div className="text-3xl font-bold">15+</div>
-                  <div className="text-sm text-muted-foreground">Years of Excellence</div>
+                <div className="absolute -bottom-5 sm:-bottom-6 left-2 sm:left-4 bg-white text-primary px-5 py-3 sm:px-6 sm:py-4 rounded-lg shadow-xl">
+                  <div className="text-2xl sm:text-3xl font-bold">15+</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Years of Excellence
+                  </div>
                 </div>
+
               </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
+
 
       {/* Stats Section */}
       <section className="py-16 bg-muted">
@@ -158,7 +173,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fadeInLeft">
               <img
-                src="/Team story.jpg"
+                src="/plumbing-team.jpg"
                 alt="Company history"
                 className="rounded-lg shadow-lg"
               />
@@ -342,8 +357,10 @@ export default function AboutPage() {
                   variant="outline"
                   className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
                 >
-                  Shop now
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <Link href="/products" className="flex items-center">
+                    Shop now
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Link>
                 </Button>
               </motion.div>
             </div>

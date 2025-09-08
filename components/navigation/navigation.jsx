@@ -149,7 +149,9 @@ export function Navigation() {
                           (+234) 703 132 0510
                         </Button>
                         <Button className="w-full h-12 text-base">
-                          Shop now
+                          <Link href="/products" className="flex items-center">
+                            Shop now
+                          </Link>
                         </Button>
                       </div>
                     </div>
