@@ -44,9 +44,10 @@ export function TrustSection() {
   ]
 
   const sliderImages = [
-    "/professional-plumbers-trust-illustration-with-tool.jpg",
-    "/professional-plumbing-team-at-work.png",
-    "/plumbing-equipment-tools.jpg",
+    "/trust-section-image1.png",
+    "/trust-section-image2.png",
+    "/trust-section-image3.png",
+    "/trust-section-image4.png",
   ]
 
   const [current, setCurrent] = useState(0)

@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -59,53 +59,11 @@ export function TestimonialsSection() {
       rating: 5,
       text: "Faucet installation was seamless. The technician was knowledgeable, clean, and completed the job ahead of schedule.",
     },
-    {
-      name: "Yusuf Mohammed",
-      location: "Abuja",
-      rating: 5,
-      text: "Emergency pipe burst repair at midnight. They responded within 30 minutes and had us back to normal by morning. Exceptional service!",
-    },
-    {
-      name: "Blessing Eze",
-      location: "Owerri",
-      rating: 5,
-      text: "Ordered plumbing supplies online. Fast delivery, products exactly as described, and great packaging. Will definitely order again!",
-    },
-    {
-      name: "Ibrahim Sani",
-      location: "Jos",
-      rating: 5,
-      text: "Water heater maintenance service was thorough. They explained everything clearly and gave helpful tips for future care.",
-    },
-    {
-      name: "Chioma Nwankwo",
-      location: "Awka",
-      rating: 5,
-      text: "Bathroom renovation supplies were top quality. The team helped with product selection and provided excellent technical advice.",
-    },
-    {
-      name: "Abdullahi Baba",
-      location: "Maiduguri",
-      rating: 5,
-      text: "Sink installation was perfect. Clean work, fair pricing, and they even helped with minor adjustments later. True professionals!",
-    },
-    {
-      name: "Folake Adeyemi",
-      location: "Ibadan",
-      rating: 5,
-      text: "Drain cleaning service exceeded expectations. They cleared a stubborn blockage that had been troubling us for months.",
-    },
-    {
-      name: "Daniel Okwu",
-      location: "Calabar",
-      rating: 5,
-      text: "Emergency plumbing service during the holidays. They came out immediately and fixed our burst pipe. Saved our Christmas celebration!",
-    },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showAll, setShowAll] = useState(false)
-  const itemsPerPage = 3
+  const itemsPerPage = 4 // ✅ updated to 4
   const totalPages = Math.ceil(testimonials.length / itemsPerPage)
 
   const nextSlide = () => {
@@ -125,6 +83,7 @@ export function TestimonialsSection() {
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
+        {/* Heading */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimatedSection animation="fadeInLeft">
             <div className="relative">
@@ -142,14 +101,17 @@ export function TestimonialsSection() {
             <Badge variant="outline" className="mb-4">
               Customer Reviews
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">What Our Customers Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
+              What Our Customers Say
+            </h2>
             <p className="text-lg text-muted-foreground text-pretty">
-              Don't just take our word for it. Here's what our satisfied customers have to say about our services and
-              products.
+              Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about our
+              services and products.
             </p>
           </AnimatedSection>
         </div>
 
+        {/* Controls */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex gap-2">
             <Button
@@ -177,14 +139,22 @@ export function TestimonialsSection() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Testimonials grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {getCurrentTestimonials().map((testimonial, index) => (
             <AnimatedSection key={`${testimonial.name}-${index}`} animation="fadeInUp" delay={index * 0.1}>
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
                 <Card className="h-full shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mx-auto mb-6">
-                      <Quote className="w-6 h-6 text-primary" />
+                  <CardContent className="p-6">
+                    {/* Profile image placeholder instead of quote */}
+                    <div className="flex justify-center mb-6">
+                      <Image
+                        src={`/avatars/avatar-${(index % 5) + 1}.png`} // ✅ use local or random avatars
+                        alt={testimonial.name}
+                        width={60}
+                        height={60}
+                        className="rounded-full border-2 border-primary shadow"
+                      />
                     </div>
 
                     <div className="flex justify-center mb-4">
@@ -206,6 +176,7 @@ export function TestimonialsSection() {
           ))}
         </div>
 
+        {/* Dots */}
         {!showAll && (
           <div className="flex justify-center mt-8 gap-2">
             {[...Array(totalPages)].map((_, index) => (

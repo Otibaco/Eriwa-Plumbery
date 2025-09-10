@@ -19,58 +19,61 @@ export function PartnershipSection() {
   ]
 
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section className="py-16 sm:py-20 bg-muted">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Content section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left Image */}
           <AnimatedSection animation="fadeInLeft">
-            <div className="relative">
+            <div className="relative w-full max-w-md mx-auto lg:max-w-full">
               <Image
                 src="/partnership-handshake-illustration-with-plumbing-t.jpg"
                 alt="Partnership Section"
-                width={500}
-                height={400}
-                className="rounded-lg shadow-lg"
+                width={600}
+                height={500}
+                className="rounded-lg shadow-lg object-cover w-full h-auto"
               />
             </div>
           </AnimatedSection>
 
+          {/* Right Text */}
           <AnimatedSection animation="fadeInRight">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-3 sm:mb-4">
               Our Partners
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-balance">
               Trusted Partnerships for Quality Solutions
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 text-pretty">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 text-pretty leading-relaxed">
               We partner with leading brands and suppliers to bring you the highest quality plumbing products and
               services. Our strong relationships ensure competitive pricing and reliable supply chains.
             </p>
-            <Button size="lg" className="mb-8">
+            <Button size="lg" className="mb-6 sm:mb-8 w-full sm:w-auto">
               Partner with Eriwa Plumbery for long-term success
             </Button>
           </AnimatedSection>
         </div>
 
         {/* Partner logos marquee */}
-        <AnimatedSection animation="fadeInUp" className="mt-16">
-          <div className="overflow-hidden">
+        <AnimatedSection animation="fadeInUp" className="mt-12 sm:mt-16">
+          <div className="overflow-hidden relative">
             <motion.div
-              animate={{ x: [0, -100 * partners.length] }}
+              animate={{ x: [0, -200 * partners.length] }}
               transition={{
                 x: {
                   repeat: Number.POSITIVE_INFINITY,
                   repeatType: "loop",
-                  duration: 20,
+                  duration: 25,
                   ease: "linear",
                 },
               }}
-              className="flex gap-8 items-center"
-              style={{ width: `${200 * partners.length}px` }}
+              className="flex gap-6 sm:gap-8 items-center"
+              style={{ width: `${220 * partners.length}px` }}
             >
               {[...partners, ...partners].map((partner, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-32 h-20 bg-white rounded-lg shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+                  className="flex-shrink-0 w-28 sm:w-32 h-16 sm:h-20 bg-white rounded-lg shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
                 >
                   <Image
                     src={partner.logo || "/placeholder.svg"}
