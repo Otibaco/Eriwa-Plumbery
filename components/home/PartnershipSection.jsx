@@ -8,14 +8,14 @@ import Image from "next/image"
 
 export function PartnershipSection() {
   const partners = [
-    { name: "Kohler", logo: "people/kohler-plumbing-brand-logo.png" },
-    { name: "American Standard", logo: "people/american-standard-plumbing-logo.jpg" },
-    { name: "Delta Faucet", logo: "people/delta-faucet-brand-logo.png" },
-    { name: "Moen", logo: "people/moen-plumbing-brand-logo.jpeg" },
-    { name: "Grohe", logo: "people/grohe-plumbing-brand-logo.png" },
-    { name: "Hansgrohe", logo: "people/hansgrohe-plumbing-logo.jpg" },
-    { name: "TOTO", logo: "people/toto-plumbing-brand-logo.jpeg" },
-    { name: "Pfister", logo: "people/pfister-plumbing-brand-logo.png" },
+    { name: "Kohler", logo: "/logos/kohler-plumbing-brand-logo.png" },
+    { name: "American Standard", logo: "/logos/american-standard-plumbing-logo.jpg" },
+    { name: "Delta Faucet", logo: "/logos/delta-faucet-brand-logo.png" },
+    { name: "Moen", logo: "/logos/moen-plumbing-brand-logo.jpeg" },
+    { name: "Grohe", logo: "/logos/grohe-plumbing-brand-logo.png" },
+    { name: "Hansgrohe", logo: "/logos/hansgrohe-plumbing-logo.jpg" },
+    { name: "TOTO", logo: "/logos/toto-plumbing-brand-logo.jpeg" },
+    { name: "Pfister", logo: "/logos/pfister-plumbing-brand-logo.png" },
   ]
 
   return (
