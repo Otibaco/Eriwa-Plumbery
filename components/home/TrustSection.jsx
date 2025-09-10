@@ -3,51 +3,67 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { Clock, Shield, DollarSign, Zap, Award, Users, ShieldCheck, ShoppingCart, AwardIcon, Wrench, Star } from "lucide-react"
+import { Clock, ShieldCheck, ShoppingCart, AwardIcon, Wrench, Star } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export function TrustSection() {
   const trustFeatures = [
-      {
-        icon: ShieldCheck,
-        title: "Licensed & Insured",
-        description: "Fully licensed, bonded, and insured for your complete peace of mind and protection.",
-      },
-      {
-        icon: ShoppingCart,
-        title: "Plumbing Products",
-        description: "We don’t just fix — we also sell top-quality plumbing tools, pipes, and fittings at great prices.",
-      },
-  
-      {
-        icon: AwardIcon,
-        title: "Satisfaction Guaranteed",
-        description: "100% satisfaction guarantee on all our work with comprehensive warranties included.",
-      },
-  
-      {
-        icon: Wrench,
-        title: "Quality Equipment",
-        description: "State-of-the-art tools and equipment to ensure efficient and long-lasting repairs.",
-      },
-      {
-        icon: Star,
-        title: "5-Star Reviews",
-        description: "Consistently rated 5 stars by our customers for quality work and excellent service.",
-      },
-      {
-        icon: Clock,
-        title: "24/7 Emergency Service",
-        description: "Round-the-clock emergency service because plumbing problems don't wait for business hours.",
-      },
-  
-    ]
+    {
+      icon: ShieldCheck,
+      title: "Licensed & Insured",
+      description: "Fully licensed, bonded, and insured for your complete peace of mind and protection.",
+    },
+    {
+      icon: ShoppingCart,
+      title: "Plumbing Products",
+      description: "We don’t just fix — we also sell top-quality plumbing tools, pipes, and fittings at great prices.",
+    },
+    {
+      icon: AwardIcon,
+      title: "Satisfaction Guaranteed",
+      description: "100% satisfaction guarantee on all our work with comprehensive warranties included.",
+    },
+    {
+      icon: Wrench,
+      title: "Quality Equipment",
+      description: "State-of-the-art tools and equipment to ensure efficient and long-lasting repairs.",
+    },
+    {
+      icon: Star,
+      title: "5-Star Reviews",
+      description: "Consistently rated 5 stars by our customers for quality work and excellent service.",
+    },
+    {
+      icon: Clock,
+      title: "24/7 Emergency Service",
+      description: "Round-the-clock emergency service because plumbing problems don't wait for business hours.",
+    },
+  ]
+
+  const sliderImages = [
+    "/professional-plumbers-trust-illustration-with-tool.jpg",
+    "/professional-plumbing-team-at-work.png",
+    "/plumbing-equipment-tools.jpg",
+  ]
+
+  const [current, setCurrent] = useState(0)
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev === sliderImages.length - 1 ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1))
+  }
 
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
           <AnimatedSection animation="fadeInLeft">
             <Badge variant="outline" className="mb-4">
               Why Choose Us
@@ -77,15 +93,40 @@ export function TrustSection() {
             </div>
           </AnimatedSection>
 
+          {/* Right Image Slider */}
           <AnimatedSection animation="fadeInRight">
-            <div className="relative">
-              <Image
-                src="/professional-plumbers-trust-illustration-with-tool.jpg"
-                alt="Plumbers Trust Section"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-lg"
-              />
+            <div className="relative w-full max-w-lg mx-auto">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={sliderImages[current]}
+                  alt={`Trust Image ${current + 1}`}
+                  width={600}
+                  height={500}
+                  className="rounded-lg shadow-lg object-cover"
+                />
+              </motion.div>
+
+              {/* Left Arrow */}
+              <button
+                onClick={prevSlide}
+                className="absolute top-1/2 left-3 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+              >
+                <ChevronLeft className="w-6 h-6 text-primary" />
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                onClick={nextSlide}
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+              >
+                <ChevronRight className="w-6 h-6 text-primary" />
+              </button>
             </div>
           </AnimatedSection>
         </div>
