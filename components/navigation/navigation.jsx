@@ -13,7 +13,7 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
+    { href: "/services", label: "Residential Plumbing" }, // ✅ Updated label
     { href: "/products", label: "Buy now" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
@@ -44,7 +44,7 @@ export function Navigation() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) =>
-              item.label === "Services" ? (
+              item.label === "Residential Plumbing" ? (
                 <div
                   key={item.href}
                   className="relative"
@@ -52,7 +52,7 @@ export function Navigation() {
                   onMouseLeave={() => setDropdownOpen(false)}
                 >
                   <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium">
-                    <span>Residential Plumbing</span>
+                    {item.label}
                     <ChevronDown className="w-4 h-4" />
                   </button>
 
@@ -68,7 +68,7 @@ export function Navigation() {
                           <Link
                             key={index}
                             href={service.href}
-                            className="block px-4 py-2 text-muted-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                            className="block px-4 py-2 hover:bg-primary/5 hover:text-primary transition-colors"
                           >
                             {service.name}
                           </Link>
@@ -92,13 +92,6 @@ export function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <ThemeToggle />
-            <a
-              href="tel:+234-800-PLUMBER"
-              className="flex items-center gap-2 text-primary font-semibold"
-            >
-              <Phone className="w-4 h-4" />
-              Call Now
-            </a>
             <Button size="sm" className="text-xs xl:text-sm">
               <Link href="/products" className="flex items-center">
                 Shop now
@@ -106,13 +99,9 @@ export function Navigation() {
             </Button>
           </div>
 
-          {/* Tablet CTA */}
+          {/* Tablet CTA (removed Call Now, only ThemeToggle remains) */}
           <div className="hidden md:flex lg:hidden items-center gap-2">
-            <ThemeToggle />
-            <a href="tel:+234-800-PLUMBER" className="flex items-center gap-2 text-primary text-sm">
-              <Phone className="w-3 h-3" />
-              Call Now
-            </a>
+            {/* <ThemeToggle /> */}
           </div>
 
           {/* Mobile Menu */}
@@ -148,8 +137,8 @@ export function Navigation() {
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute top-12 right-0 w-[90vw] max-w-sm bg-background border rounded-2xl shadow-xl z-50"
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute top-12 right-0 w-[92vw] max-w-sm bg-background border rounded-2xl shadow-xl z-50 overflow-y-auto max-h-[80vh]"
                   >
                     <div className="flex flex-col gap-6 p-6">
                       {/* Logo + ThemeToggle */}
@@ -166,11 +155,9 @@ export function Navigation() {
                       {/* Nav Links */}
                       <nav className="flex flex-col gap-4">
                         {navItems.map((item) =>
-                          item.label === "Services" ? (
+                          item.label === "Residential Plumbing" ? (
                             <div key={item.href} className="flex flex-col gap-2">
-                              <span className="font-semibold text-foreground">
-                                Residential Plumbing
-                              </span>
+                              <span className="text-lg font-medium text-foreground">{item.label}</span>
                               <div className="pl-4 flex flex-col gap-2">
                                 {residentialServices.map((service, index) => (
                                   <Link

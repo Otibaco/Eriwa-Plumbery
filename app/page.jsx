@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer/footer"
 import { CTASection } from "@/components/home/cta-section"
 import { EmergencyBanner } from "@/components/home/emergency-banner"
 import { HeroSection } from "@/components/home/hero-section"
+import { PartnershipSection } from "@/components/home/PartnershipSection"
 import { PlumbingServicesSection } from "@/components/home/PlumbingServicesSection"
 import { ServicesPreview } from "@/components/home/services-preview"
 import { TestimonialsSection } from "@/components/home/testimonials-section"
@@ -20,11 +21,12 @@ export default function HomePage() {
       <Navigation />
       <HeroSection />
       <EmergencyBanner />
-      <PlumbingServicesSection />
-      <ServicesPreview />
+      <PlumbingServicesSection /> {/* still makiing update here  */}
+      {/* <ServicesPreview /> */}
       {/* <ServicesOverview /> */}
       <TrustSection />
       {/* <WhyChooseUs /> */}
+      <PartnershipSection />
       <TestimonialsSection />
       <CTASection />
       <Footer />
