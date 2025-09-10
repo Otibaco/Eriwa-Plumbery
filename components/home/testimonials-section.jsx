@@ -15,55 +15,63 @@ export function TestimonialsSection() {
       name: "Aisha Bello",
       location: "Zaria",
       rating: 5,
+      image: "/people/blessing-olarewaju.jpg",
       text: "I ordered plumbing tools from Eriwa Plumbery and got them delivered fast. The products were top quality, fairly priced, and exactly what I needed.",
     },
     {
       name: "Semi Ola",
       location: "Onitsha",
       rating: 5,
+      image: "/people/eyo-archibong.jpg",
       text: "Excellent service! They fixed our emergency leak at 2 AM and were professional throughout. Highly recommend Eriwa Plumbery!",
     },
     {
       name: "Chinedu Akpan",
       location: "Sapelle",
       rating: 5,
+      image: "/people/itoro-bernard.jpg",
       text: "Professional installation of our new water heater. Fair pricing, quality work, and they cleaned up perfectly. Will use again!",
     },
     {
-      name: "Fatima Ibrahim",
+      name: "Tina sewa",
       location: "Kano",
       rating: 5,
+      image: "/people/sewa-owoeye.jpg",
       text: "Outstanding drain cleaning service. They arrived on time, diagnosed the problem quickly, and fixed it efficiently. Great value for money!",
     },
     {
       name: "Emeka Okafor",
       location: "Enugu",
       rating: 5,
+      image: "/people/prince-akachi.jpg",
       text: "Needed emergency toilet repair on a Sunday. Eriwa Plumbery came through! Professional, courteous, and reasonably priced.",
     },
     {
       name: "Kemi Adebayo",
       location: "Lagos",
       rating: 5,
+      image: "/people/micheal-ogungbe.jpg",
       text: "Bought a complete bathroom fixture set. Quality products, competitive prices, and excellent customer service. Highly satisfied!",
     },
     {
       name: "Musa Garba",
       location: "Kaduna",
       rating: 5,
+      image: "/people/lanre-tobi.jpg",
       text: "Leak detection service was thorough and accurate. They found the hidden pipe leak that others missed. Saved us thousands in water damage!",
     },
     {
       name: "Grace Okoro",
       location: "Port Harcourt",
       rating: 5,
+      image: "/people/itoro-bernard.jpg",
       text: "Faucet installation was seamless. The technician was knowledgeable, clean, and completed the job ahead of schedule.",
     },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showAll, setShowAll] = useState(false)
-  const itemsPerPage = 4 // ✅ updated to 4
+  const itemsPerPage = 4
   const totalPages = Math.ceil(testimonials.length / itemsPerPage)
 
   const nextSlide = () => {
@@ -146,10 +154,10 @@ export function TestimonialsSection() {
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
                 <Card className="h-full shadow-lg hover:shadow-xl transition-shadow">
                   <CardContent className="p-6">
-                    {/* Profile image placeholder instead of quote */}
+                    {/* Profile image */}
                     <div className="flex justify-center mb-6">
                       <Image
-                        src={`/avatars/avatar-${(index % 5) + 1}.png`} // ✅ use local or random avatars
+                        src={testimonial.image}
                         alt={testimonial.name}
                         width={60}
                         height={60}

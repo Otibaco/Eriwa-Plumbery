@@ -8,14 +8,14 @@ import Image from "next/image"
 
 export function PartnershipSection() {
   const partners = [
-    { name: "Kohler", logo: "/kohler-plumbing-brand-logo.png" },
-    { name: "American Standard", logo: "/american-standard-plumbing-logo.jpg" },
-    { name: "Delta Faucet", logo: "/delta-faucet-brand-logo.png" },
-    { name: "Moen", logo: "/moen-plumbing-brand-logo.jpeg" },
-    { name: "Grohe", logo: "/grohe-plumbing-brand-logo.png" },
-    { name: "Hansgrohe", logo: "/hansgrohe-plumbing-logo.jpg" },
-    { name: "TOTO", logo: "/toto-plumbing-brand-logo.jpeg" },
-    { name: "Pfister", logo: "/pfister-plumbing-brand-logo.png" },
+    { name: "Kohler", logo: "people/kohler-plumbing-brand-logo.png" },
+    { name: "American Standard", logo: "people/american-standard-plumbing-logo.jpg" },
+    { name: "Delta Faucet", logo: "people/delta-faucet-brand-logo.png" },
+    { name: "Moen", logo: "people/moen-plumbing-brand-logo.jpeg" },
+    { name: "Grohe", logo: "people/grohe-plumbing-brand-logo.png" },
+    { name: "Hansgrohe", logo: "people/hansgrohe-plumbing-logo.jpg" },
+    { name: "TOTO", logo: "people/toto-plumbing-brand-logo.jpeg" },
+    { name: "Pfister", logo: "people/pfister-plumbing-brand-logo.png" },
   ]
 
   return (
@@ -32,6 +32,7 @@ export function PartnershipSection() {
                 width={600}
                 height={500}
                 className="rounded-lg shadow-lg object-cover w-full h-auto"
+                priority
               />
             </div>
           </AnimatedSection>
@@ -56,7 +57,7 @@ export function PartnershipSection() {
 
         {/* Partner logos marquee */}
         <AnimatedSection animation="fadeInUp" className="mt-12 sm:mt-16">
-          <div className="overflow-hidden relative">
+          <div className="overflow-hidden relative px-2 sm:px-0">
             <motion.div
               animate={{ x: [0, -200 * partners.length] }}
               transition={{
@@ -73,7 +74,7 @@ export function PartnershipSection() {
               {[...partners, ...partners].map((partner, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-28 sm:w-32 h-16 sm:h-20 bg-white rounded-lg shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+                  className="flex-shrink-0 w-24 sm:w-28 md:w-32 h-14 sm:h-16 md:h-20 bg-white rounded-lg shadow-sm flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
                 >
                   <Image
                     src={partner.logo || "/placeholder.svg"}
