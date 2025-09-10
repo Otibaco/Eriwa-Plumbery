@@ -8,14 +8,14 @@ import Image from "next/image"
 
 export function PartnershipSection() {
   const partners = [
-    { name: "Kohler", logo: "/kohler-plumbing-brand-logo.jpg" },
+    { name: "Kohler", logo: "/kohler-plumbing-brand-logo.png" },
     { name: "American Standard", logo: "/american-standard-plumbing-logo.jpg" },
-    { name: "Delta Faucet", logo: "/delta-faucet-brand-logo.jpg" },
-    { name: "Moen", logo: "/moen-plumbing-brand-logo.jpg" },
-    { name: "Grohe", logo: "/grohe-plumbing-brand-logo.jpg" },
+    { name: "Delta Faucet", logo: "/delta-faucet-brand-logo.png" },
+    { name: "Moen", logo: "/moen-plumbing-brand-logo.jpeg" },
+    { name: "Grohe", logo: "/grohe-plumbing-brand-logo.png" },
     { name: "Hansgrohe", logo: "/hansgrohe-plumbing-logo.jpg" },
-    { name: "TOTO", logo: "/toto-plumbing-brand-logo.jpg" },
-    { name: "Pfister", logo: "/pfister-plumbing-brand-logo.jpg" },
+    { name: "TOTO", logo: "/toto-plumbing-brand-logo.jpeg" },
+    { name: "Pfister", logo: "/pfister-plumbing-brand-logo.png" },
   ]
 
   return (
@@ -27,7 +27,7 @@ export function PartnershipSection() {
           <AnimatedSection animation="fadeInLeft">
             <div className="relative w-full max-w-md mx-auto lg:max-w-full">
               <Image
-                src="/partnership-handshake-illustration-with-plumbing-t.jpg"
+                src="/Partnership-section-image.png"
                 alt="Partnership Section"
                 width={600}
                 height={500}
