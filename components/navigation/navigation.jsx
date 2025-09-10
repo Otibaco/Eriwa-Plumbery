@@ -3,26 +3,30 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet"
-import { Menu, X, Phone, Wrench } from "lucide-react"
+import { Menu, X, Phone, Wrench, ChevronDown } from "lucide-react"
 import { ThemeToggle } from "../ui/theme-toggle"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
-    { href: "/products", label: "Products" },
+    { href: "/products", label: "Buy now" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
+    { href: "/blog", label: "Blog" },
+    { href: "/apply", label: "Apply" },
+  ]
+
+  const residentialServices = [
+    { name: "Water Heater", href: "/water-heater" },
+    { name: "Faucets & Sinks", href: "/faucets-and-sinks" },
+    { name: "Drain Cleaning", href: "/drain-cleaning" },
+    { name: "Toilet Repairs & Installations", href: "/toilet-repairs-and-installations" },
+    { name: "Leak Detection & Pipe Repairs", href: "/leak-detection-and-pipe-repairs" },
   ]
 
   return (
@@ -39,25 +43,62 @@ export function Navigation() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.label === "Services" ? (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                >
+                  <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium">
+                    <span>Residential Plumbing</span>
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-background rounded-lg shadow-xl border py-2 z-50"
+                      >
+                        {residentialServices.map((service, index) => (
+                          <Link
+                            key={index}
+                            href={service.href}
+                            className="block px-4 py-2 text-muted-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                          >
+                            {service.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <ThemeToggle />
-            <Button variant="outline" size="sm" className="text-xs xl:text-sm bg-transparent">
-              <Phone className="w-3 h-3 xl:w-4 xl:h-4 mr-1 xl:mr-2" />
-              <span className="hidden xl:inline">(+234) 703 132 0510</span>
-              <span className="xl:hidden">Call</span>
-            </Button>
+            <a
+              href="tel:+234-800-PLUMBER"
+              className="flex items-center gap-2 text-primary font-semibold"
+            >
+              <Phone className="w-4 h-4" />
+              Call Now
+            </a>
             <Button size="sm" className="text-xs xl:text-sm">
               <Link href="/products" className="flex items-center">
                 Shop now
@@ -68,20 +109,18 @@ export function Navigation() {
           {/* Tablet CTA */}
           <div className="hidden md:flex lg:hidden items-center gap-2">
             <ThemeToggle />
-            <Button variant="outline" size="sm" className="text-xs bg-transparent">
-              <Phone className="w-3 h-3 mr-1" />
-              Call
-            </Button>
+            <a href="tel:+234-800-PLUMBER" className="flex items-center gap-2 text-primary text-sm">
+              <Phone className="w-3 h-3" />
+              Call Now
+            </a>
           </div>
 
           {/* Mobile Menu */}
           <div className="flex items-center gap-2 lg:hidden relative z-50">
-            {/* Theme toggle still visible */}
             <div className="md:hidden">
               <ThemeToggle />
             </div>
 
-            {/* Menu Button */}
             <Button
               variant="ghost"
               size="sm"
@@ -92,20 +131,19 @@ export function Navigation() {
               <span className="sr-only">Toggle menu</span>
             </Button>
 
-            {/* AnimatePresence for dropdown */}
             <AnimatePresence>
               {isOpen && (
                 <>
-                  {/* 🔹 Backdrop Overlay */}
+                  {/* Backdrop */}
                   <motion.div
                     className="fixed inset-0 bg-black/40 z-40"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onClick={() => setIsOpen(false)} // close when clicking outside
+                    onClick={() => setIsOpen(false)}
                   />
 
-                  {/* 🔹 Dropdown Drawer */}
+                  {/* Dropdown Drawer */}
                   <motion.div
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -127,27 +165,47 @@ export function Navigation() {
 
                       {/* Nav Links */}
                       <nav className="flex flex-col gap-4">
-                        {navItems.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="text-lg font-medium hover:text-primary transition-colors"
-                            onClick={() => setIsOpen(false)} // close when clicking a link
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                        {navItems.map((item) =>
+                          item.label === "Services" ? (
+                            <div key={item.href} className="flex flex-col gap-2">
+                              <span className="font-semibold text-foreground">
+                                Residential Plumbing
+                              </span>
+                              <div className="pl-4 flex flex-col gap-2">
+                                {residentialServices.map((service, index) => (
+                                  <Link
+                                    key={index}
+                                    href={service.href}
+                                    className="text-muted-foreground hover:text-primary transition-colors"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    {service.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="text-lg font-medium hover:text-primary transition-colors"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {item.label}
+                            </Link>
+                          )
+                        )}
                       </nav>
 
                       {/* CTA Buttons */}
                       <div className="flex flex-col gap-3">
-                        <Button
-                          variant="outline"
-                          className="w-full h-12 text-base bg-transparent"
+                        <a
+                          href="tel:+234-800-PLUMBER"
+                          className="flex items-center gap-2 text-primary font-semibold"
                         >
-                          <Phone className="w-4 h-4 mr-2" />
-                          (+234) 703 132 0510
-                        </Button>
+                          <Phone className="w-4 h-4" />
+                          Call Now
+                        </a>
                         <Button className="w-full h-12 text-base">
                           <Link href="/products" className="flex items-center">
                             Shop now
@@ -160,7 +218,6 @@ export function Navigation() {
               )}
             </AnimatePresence>
           </div>
-
         </div>
       </div>
     </nav>
