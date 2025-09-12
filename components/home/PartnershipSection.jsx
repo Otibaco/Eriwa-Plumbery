@@ -51,7 +51,7 @@ export function PartnershipSection() {
               services. Our strong relationships ensure competitive pricing and reliable supply chains.
             </p>
             <Button size="lg" className="mb-6 sm:mb-8 w-full sm:w-auto">
-              Partner with Eriwa Plumbery for long-term success
+              Partner with us for long-term success
             </Button>
           </AnimatedSection>
         </div>

@@ -13,6 +13,8 @@ import { Users, Clock, Award, DollarSign, Phone, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Navigation } from "@/components/navigation/navigation"
+import { Footer } from "@/components/footer/footer"
+import { WhatsAppWidget } from "@/components/whatsapp-widget/whatsapp-widget"
 
 export default function ApplyPage() {
   const benefits = [
@@ -67,7 +69,7 @@ export default function ApplyPage() {
             <AnimatedSection animation="fadeInRight">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=500&width=600"
+                  src="/Join-section.png"
                   alt="Join Our Team"
                   width={600}
                   height={500}
@@ -251,6 +253,8 @@ export default function ApplyPage() {
           </AnimatedSection>
         </div>
       </section>
+      <Footer />
+      <WhatsAppWidget />
     </div>
   )
 }
