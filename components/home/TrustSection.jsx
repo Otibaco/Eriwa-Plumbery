@@ -45,10 +45,9 @@ export function TrustSection() {
 
   const sliderImages = [
     "/trust-section-image1.png",
-    "/trust-section-image2.png",
     "/trust-section-image3.png",
     "/trust-section-image4.png",
-  ]
+  ]// "/trust-section-image2.png",
 
   const [current, setCurrent] = useState(0)
 

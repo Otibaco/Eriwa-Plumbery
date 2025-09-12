@@ -13,7 +13,8 @@ export function PartnershipSection() {
     { name: "Delta Faucet", logo: "/logos/delta-faucet-brand-logo.png" },
     { name: "Moen", logo: "/logos/moen-plumbing-brand-logo.jpeg" },
     { name: "Grohe", logo: "/logos/grohe-plumbing-brand-logo.png" },
-    { name: "Hansgrohe", logo: "/logos/hansgrohe-plumbing-logo.jpg" },
+    // { name: "Hansgrohe", logo: "/logos/hansgrohe-plumbing-logo.png" },
+  
     { name: "TOTO", logo: "/logos/toto-plumbing-brand-logo.jpeg" },
     { name: "Pfister", logo: "/logos/pfister-plumbing-brand-logo.png" },
   ]

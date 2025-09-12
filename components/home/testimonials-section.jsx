@@ -33,7 +33,7 @@ export function TestimonialsSection() {
       text: "Professional installation of our new water heater. Fair pricing, quality work, and they cleaned up perfectly. Will use again!",
     },
     {
-      name: "Tina sewa",
+      name: "Tina Sewa",
       location: "Kano",
       rating: 5,
       image: "/people/sewa-owoeye.jpg",
@@ -74,13 +74,8 @@ export function TestimonialsSection() {
   const itemsPerPage = 4
   const totalPages = Math.ceil(testimonials.length / itemsPerPage)
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages)
-  }
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % totalPages)
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages)
 
   const getCurrentTestimonials = () => {
     if (showAll) return testimonials
@@ -90,13 +85,13 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimatedSection animation="fadeInLeft">
             <div className="relative">
               <Image
-                src="/customer-reviews-illustration-with-happy-customers.jpg"
+                src="/Customer-section.png"
                 alt="Customer Reviews Illustration"
                 width={500}
                 height={400}
@@ -112,7 +107,7 @@ export function TestimonialsSection() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
               What Our Customers Say
             </h2>
-            <p className="text-lg text-muted-foreground text-pretty">
+            <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
               Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about our
               services and products.
             </p>
@@ -120,25 +115,25 @@ export function TestimonialsSection() {
         </div>
 
         {/* Controls */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-10">
           <div className="flex gap-2">
             <Button
               variant="outline"
               size="icon"
               onClick={prevSlide}
               disabled={showAll}
-              className="rounded-full bg-transparent"
+              className="rounded-full bg-background shadow"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={nextSlide}
               disabled={showAll}
-              className="rounded-full bg-transparent"
+              className="rounded-full bg-background shadow"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5" />
             </Button>
           </div>
 
@@ -152,29 +147,34 @@ export function TestimonialsSection() {
           {getCurrentTestimonials().map((testimonial, index) => (
             <AnimatedSection key={`${testimonial.name}-${index}`} animation="fadeInUp" delay={index * 0.1}>
               <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-                <Card className="h-full shadow-lg hover:shadow-xl transition-shadow">
-                  <CardContent className="p-6">
+                <Card className="h-full shadow-md hover:shadow-xl transition-shadow rounded-2xl">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
                     {/* Profile image */}
-                    <div className="flex justify-center mb-6">
+                    <div className="mb-5">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
-                        width={60}
-                        height={60}
-                        className="rounded-full border-2 border-primary shadow"
+                        width={80}
+                        height={80}
+                        className="w-20 h-20 rounded-full border-4 border-white shadow-lg object-cover"
                       />
                     </div>
 
-                    <div className="flex justify-center mb-4">
+                    {/* Stars */}
+                    <div className="flex justify-center mb-3">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
 
-                    <p className="text-muted-foreground mb-6 text-center italic">"{testimonial.text}"</p>
+                    {/* Quote */}
+                    <p className="text-muted-foreground mb-5 italic leading-relaxed text-sm sm:text-base">
+                      "{testimonial.text}"
+                    </p>
 
-                    <div className="text-center">
-                      <h4 className="font-semibold">{testimonial.name}</h4>
+                    {/* Name + location */}
+                    <div>
+                      <h4 className="font-semibold text-base sm:text-lg">{testimonial.name}</h4>
                       <p className="text-sm text-muted-foreground">{testimonial.location}</p>
                     </div>
                   </CardContent>
@@ -186,7 +186,7 @@ export function TestimonialsSection() {
 
         {/* Dots */}
         {!showAll && (
-          <div className="flex justify-center mt-8 gap-2">
+          <div className="flex justify-center mt-10 gap-2">
             {[...Array(totalPages)].map((_, index) => (
               <button
                 key={index}
